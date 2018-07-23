@@ -21,7 +21,7 @@ export default class Login extends Component {
     }
 
     setSessid() {
-        console.log(document.cookie)
+        this.setState({sessid: document.cookie})
     }
 
     handleEmail(event) {
@@ -49,7 +49,7 @@ export default class Login extends Component {
                     <Label for="password">Password</Label>
                     <Input type="text" value={this.state.password} onChange={this.handlePassword} placeholder="enter your password" />
                 </FormGroup>
-                <Button onclick={(e) => {this.handleLogin}}></Button>
+                <Button onclick={(e) => {this.handleLogin}}>Log In</Button>
               </Form>
             </Col>
         )
