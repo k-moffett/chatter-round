@@ -75,7 +75,7 @@ export default class SignUp extends Component {
                     <Label for="password2">Verify Password</Label>
                     <Input type="text" value={this.state.password2} onChange={this.handlePassword2} placeholder="verify your password" />
                 </FormGroup>
-                <Button onclick={(e) => {this.handleSignUp}}>Sign In</Button>
+                <Button onclick={(e) => {this.handleSignUp()}}>Sign In</Button>
               </Form>
             </Col>
         )
