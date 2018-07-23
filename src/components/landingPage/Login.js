@@ -13,6 +13,7 @@ export default class Login extends Component {
         this.setSessid = this.setSessid.bind(this)
         this.handleEmail = this.handleEmail.bind(this)
         this.handlePassword = this.handlePassword.bind(this)
+        this.handleLogin = this.handleLogin.bind(this)
     }
 
     componentWillMount() {
@@ -31,6 +32,10 @@ export default class Login extends Component {
         this.setState({password: event.target.value});
     }
 
+    handleLogin() {
+        console.log(this.state)
+    }
+
     render() {
         return(
             <Col>
@@ -44,7 +49,7 @@ export default class Login extends Component {
                     <Label for="password">Password</Label>
                     <Input type="text" value={this.state.password} onChange={this.handlePassword} placeholder="enter your password" />
                 </FormGroup>
-                <Button onclick={(e) => {console.log(this.state)}}></Button>
+                <Button onclick={(e) => {this.handleLogin}}></Button>
               </Form>
             </Col>
         )

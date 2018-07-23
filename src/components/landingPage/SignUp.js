@@ -18,6 +18,7 @@ export default class SignUp extends Component {
         this.handleEmail = this.handleEmail.bind(this)
         this.handlePassword = this.handlePassword.bind(this)
         this.handlePassword2 =this.handlePassword2.bind(this)
+        this.handleSignUp = this.handleSignUp.bind(this)
     }
 
     componentWillMount() {
@@ -44,6 +45,10 @@ export default class SignUp extends Component {
         this.setState({password2: event.target.value});
     }
 
+    handleSignUp() {
+        console.log(this.state)
+    }
+
 
     render() {
         return(
@@ -60,7 +65,7 @@ export default class SignUp extends Component {
                 </FormGroup>
                 <FormGroup>
                   <Label for="dateOfBirth">Date of Birth</Label>
-                  <Input type="date" value={this.state.dateOfBirth} placeholder="enter date of birth" />
+                  <Input type="date" placeholder="enter date of birth" />
                 </FormGroup>
                 <FormGroup>
                     <Label for="password">Password</Label>
@@ -70,7 +75,7 @@ export default class SignUp extends Component {
                     <Label for="password2">Verify Password</Label>
                     <Input type="text" value={this.state.password2} onChange={this.handlePassword2} placeholder="verify your password" />
                 </FormGroup>
-                <Button onclick={(e) => {console.log(this.state)}}></Button>
+                <Button onclick={(e) => {this.handleSignUp}}></Button>
               </Form>
             </Col>
         )
