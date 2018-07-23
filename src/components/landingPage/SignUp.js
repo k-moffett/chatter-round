@@ -64,7 +64,7 @@ export default class SignUp extends Component {
                 </FormGroup>
                 <FormGroup>
                   <Label for="dateOfBirth">Date of Birth</Label>
-                  <Input type="date" value={this.state.dateOfBirth} onChange={this.dateOfBirth} placeholder="enter date of birth" />
+                  <Input type="date" value={this.state.dateOfBirth} onChange={this.handleDateOfBirth} placeholder="enter date of birth" />
                 </FormGroup>
                 <FormGroup>
                     <Label for="password">Password</Label>
