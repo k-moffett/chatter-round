@@ -10,7 +10,8 @@ const nonce = () => {
     }
 
 const cookie = () => {
-	return crypto.createHash('sha256').update(`${nonce()+Date.now()}`).digest('hex')
+    const hash = crypto.createHash('sha256').update(`${nonce()+Date.now()}`).digest('hex')
+    return hash
     }
-    
+
 module.exports = cookie;
