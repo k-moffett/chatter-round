@@ -11,7 +11,7 @@ const nonce = () => {
 
 const cookie = () => {
     const hash = `${crypto.createHash('sha256').update(`${nonce()+Date.now()}`).digest('hex')}`
-    return hash
+    return console.log(hash)
     }
 
 module.exports = cookie;
