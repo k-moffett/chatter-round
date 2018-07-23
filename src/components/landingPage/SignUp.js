@@ -16,7 +16,6 @@ export default class SignUp extends Component {
         this.setSessid = this.setSessid.bind(this)
         this.handleUserName = this.handleUserName.bind(this)
         this.handleEmail = this.handleEmail.bind(this)
-        this.handleDateOfBirth = this.this.handleDateOfBirth.bind(this)
         this.handlePassword = this.handlePassword.bind(this)
         this.handlePassword2 =this.handlePassword2.bind(this)
     }
@@ -35,10 +34,6 @@ export default class SignUp extends Component {
 
     handleEmail(event) {
         this.setState({email: event.target.value});
-    }
-
-    handleDateOfBirth(event) {
-        this.setState({dateOfBirth: event.target.value})
     }
 
     handlePassword(event) {
@@ -64,7 +59,7 @@ export default class SignUp extends Component {
                 </FormGroup>
                 <FormGroup>
                   <Label for="dateOfBirth">Date of Birth</Label>
-                  <Input type="date" value={this.state.dateOfBirth} onChange={this.handleDateOfBirth} placeholder="enter date of birth" />
+                  <Input type="date" value={this.state.dateOfBirth} placeholder="enter date of birth" />
                 </FormGroup>
                 <FormGroup>
                     <Label for="password">Password</Label>
