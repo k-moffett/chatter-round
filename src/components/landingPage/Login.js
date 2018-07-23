@@ -34,6 +34,7 @@ export default class Login extends Component {
     render() {
         return(
             <Col>
+            <h1>Log In!</h1>
               <Form>
                 <FormGroup>
                     <Label for="email">Email</Label>

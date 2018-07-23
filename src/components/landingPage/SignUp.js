@@ -48,6 +48,7 @@ export default class SignUp extends Component {
     render() {
         return(
             <Col>
+            <h1>Sign Up!</h1>
               <Form>
                 <FormGroup>
                     <Label for="username">Username</Label>
