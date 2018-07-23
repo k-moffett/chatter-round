@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import { Col, Button, Form, FormGroup } from 'reactstrap';
+import { Col, Button, Form, FormGroup, Input, Label } from 'reactstrap';
 
 export default class SignUp extends Component {
     constructor(props) {
