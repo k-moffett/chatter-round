@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Login, SignUp } from './landingPage/index'
 import { Container, Row, Col, Button } from 'reactstrap';
 
 export default class LandingPage extends Component {
@@ -10,10 +10,11 @@ export default class LandingPage extends Component {
     render() {
         return(
             <Container>
-                <h1>Landing Page</h1>
-                <Link to='/home'>
-                    <Button color="primary" >To Home</Button>
-                </Link>
+              <Row>
+                <h1>Chatter Round</h1>
+                <SignUp />
+                <Login />
+              </Row>
             </Container>
         )
     }
