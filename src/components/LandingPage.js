@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import { Container, Row, Col, Button } from 'reactstrap';
 
 export default class LandingPage extends Component {
@@ -10,7 +11,9 @@ export default class LandingPage extends Component {
         return(
             <Container>
                 <h1>Landing Page</h1>
-                <Button color="primary" onclick={(e) => {this.props.history.push('/home')}} >Go to home page.</Button>{' '}
+                <Link to='/home'>
+                    <Button color="primary" >To Home</Button>
+                </Link>
             </Container>
         )
     }
