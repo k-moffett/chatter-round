@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import { Col, Button, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Row, Col, Button, Form, FormGroup, Input, Label } from 'reactstrap';
 
 export default class Login extends Component {
     constructor(props) {
@@ -32,26 +32,29 @@ export default class Login extends Component {
         this.setState({password: event.target.value});
     }
 
-    handleLogin() {
+    handleLogin(e) {
+        e.preventDefault()
         console.log(this.state)
     }
 
     render() {
         return(
-            <Col>
-            <h1>Log In!</h1>
-              <Form>
-                <FormGroup>
+            <Row>
+              <Col>
+              <h1>Log In!</h1>
+                <Form>
+                  <FormGroup>
                     <Label for="email">Email</Label>
                     <Input type="email" value={this.state.email} onChange={this.handleEmail} placeholder="enter your email" />
-                </FormGroup>
-                <FormGroup>
+                  </FormGroup>
+                  <FormGroup>
                     <Label for="password">Password</Label>
                     <Input type="text" value={this.state.password} onChange={this.handlePassword} placeholder="enter your password" />
-                </FormGroup>
-                <Button onclick={(e) => {this.handleLogin()}}>Log In</Button>
-              </Form>
-            </Col>
+                  </FormGroup>
+                  <Button onclick={(e) => {this.handleLogin(e)}}>Log In</Button>
+                </Form>
+              </Col>
+            </Row>
         )
     }
 }

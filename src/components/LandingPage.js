@@ -12,9 +12,9 @@ export default class LandingPage extends Component {
             <Container>
               <Row>
                 <h1>Chatter Round</h1>
+                </Row>
                 <SignUp />
                 <Login />
-              </Row>
             </Container>
         )
     }
