@@ -11,10 +11,12 @@ export default class LandingPage extends Component {
         return(
             <Container>
               <Row>
+                <Col>
                 <h1>Chatter Round</h1>
-                </Row>
-                <SignUp />
-                <Login />
+                </Col>
+              </Row>
+              <SignUp />
+              <Login />
             </Container>
         )
     }

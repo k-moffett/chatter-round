@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Row, Col, Button, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Row, Col, Button, Form, FormGroup, Input, Label } from 'reactstrap'
+import { resolve } from 'url'
 
 export default class SignUp extends Component {
     constructor(props) {
@@ -32,11 +33,11 @@ export default class SignUp extends Component {
     }
 
     handleUserName(event) {
-        this.setState({username: event.target.value});
+        this.setState({username: event.target.value})
     }
 
     handleEmail(event) {
-        this.setState({email: event.target.value});
+        this.setState({email: event.target.value})
     }
 
     handleDatOfBirth(event) {
@@ -44,11 +45,11 @@ export default class SignUp extends Component {
     }
 
     handlePassword(event) {
-        this.setState({password: event.target.value});
+        this.setState({password: event.target.value})
     }
 
     handlePassword2(event) {
-        this.setState({password2: event.target.value});
+        this.setState({password2: event.target.value})
     }
 
     handleSignUp(e) {
@@ -56,8 +57,15 @@ export default class SignUp extends Component {
         console.log(this.state)
     }
 
-    validateDateOfBirth() {
-
+    validateDateOfBirth(e) {
+        e.preventDefault()
+        // return new Promise((resolve, reject) => {
+        // });
+        let d = new Date
+        let year = d.getFullYear()
+        let day = d.getDay()
+        let month = d.getMonth()
+        console.log(year, day, month)
     }
 
     validatePassword() {
@@ -92,6 +100,7 @@ export default class SignUp extends Component {
                     <Input type="text" value={this.state.password2} onChange={this.handlePassword2} placeholder="verify your password" />
                   </FormGroup>
                   <Button onClick={(e) => {this.handleSignUp(e)}}>Sign Up</Button>
+                  <Button onClick={(e) => {this.validateDateOfBirth(e)}}>Test get Date</Button>
                 </Form>
               </Col>
             </Row>
