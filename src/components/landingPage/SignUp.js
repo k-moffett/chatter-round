@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col, Button, Form, FormGroup, Input, Label } from 'reactstrap'
 import { resolve } from 'url'
+const moment = require('moment');
+moment().format();
 
 export default class SignUp extends Component {
     constructor(props) {
@@ -59,16 +61,15 @@ export default class SignUp extends Component {
 
     validateDateOfBirth(e) {
         e.preventDefault()
+        let today = moment(moment().format('YYYY-MM-DD'))
+        let dob = moment(this.state.dateOfBirth.toString())
+        let dateDiff = today.diff(dob, 'years', true)
         // return new Promise((resolve, reject) => {
         // });
-        let d = new Date
-        let year = d.getFullYear()
-        let day = d.getDay()
-        let month = d.getMonth()
-        console.log(year, day, month)
     }
 
     validatePassword() {
+        const strongPass = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})")
 
     }
 
