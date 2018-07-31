@@ -1,4 +1,5 @@
-const crypto = require('crypto')
+const crypto = require('crypto');
+const path = require('path');
 
 const nonce = () => {
         let text = ''
@@ -12,7 +13,7 @@ const nonce = () => {
 module.exports = (app) => {
 
 	app.get('/', (req, res) => {
-        res.cookie('sessid' , crypto.createHash('sha256').update(`${nonce()+Date.now()}`).digest('hex')).sendFile(path.join( __dirname, 'build'));
+        res.cookie('sessid' , crypto.createHash('sha256').update(`${nonce()+Date.now()}`).digest('hex')).sendFile(path.join( '../'+__dirname, 'build'));
       });
       
 }
