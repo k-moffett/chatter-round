@@ -14,8 +14,7 @@ module.exports = (app) => {
 	app.get('/', (req, res) => {
         res.cookie('sessid' , crypto.createHash('sha256').update(`${nonce()+Date.now()}`).digest('hex'), {
             httpOnly : false
-        })
-        .sendFile(path.join( __dirname, 'build'));
+        }).sendFile(path.join( __dirname, 'build'));
       });
       
 }
