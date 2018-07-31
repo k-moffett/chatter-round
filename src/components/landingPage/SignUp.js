@@ -16,16 +16,18 @@ export default class SignUp extends Component {
         this.setSessid = this.setSessid.bind(this)
         this.handleUserName = this.handleUserName.bind(this)
         this.handleEmail = this.handleEmail.bind(this)
+        this.handleDatOfBirth = this.handleDatOfBirth.bind(this)
         this.handlePassword = this.handlePassword.bind(this)
         this.handlePassword2 =this.handlePassword2.bind(this)
         this.handleSignUp = this.handleSignUp.bind(this)
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.setSessid()
     }
 
     setSessid() {
+        console.log(document.cookie)
         this.setState({sessid: document.cookie})
     }
 
@@ -35,6 +37,10 @@ export default class SignUp extends Component {
 
     handleEmail(event) {
         this.setState({email: event.target.value});
+    }
+
+    handleDatOfBirth(event) {
+        this.setState({dateOfBirth: event.target.value})
     }
 
     handlePassword(event) {
@@ -48,6 +54,14 @@ export default class SignUp extends Component {
     handleSignUp(e) {
         e.preventDefault()
         console.log(this.state)
+    }
+
+    validateDateOfBirth() {
+
+    }
+
+    validatePassword() {
+
     }
 
 
@@ -67,7 +81,7 @@ export default class SignUp extends Component {
                   </FormGroup>
                   <FormGroup>
                     <Label for="dateOfBirth">Date of Birth</Label>
-                    <Input type="date" placeholder="enter date of birth" />
+                    <Input type="date" value={this.state.dateOfBirth} onChange={this.handleDatOfBirth} placeholder="enter date of birth" />
                   </FormGroup>
                   <FormGroup>
                     <Label for="password">Password</Label>
@@ -77,7 +91,7 @@ export default class SignUp extends Component {
                     <Label for="password2">Verify Password</Label>
                     <Input type="text" value={this.state.password2} onChange={this.handlePassword2} placeholder="verify your password" />
                   </FormGroup>
-                  <Button onclick={(e) => {this.handleSignUp(e)}}>Sign Up</Button>
+                  <Button onClick={(e) => {this.handleSignUp(e)}}>Sign Up</Button>
                 </Form>
               </Col>
             </Row>

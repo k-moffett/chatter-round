@@ -51,7 +51,7 @@ export default class Login extends Component {
                     <Label for="password">Password</Label>
                     <Input type="text" value={this.state.password} onChange={this.handlePassword} placeholder="enter your password" />
                   </FormGroup>
-                  <Button onclick={(e) => {this.handleLogin(e)}}>Log In</Button>
+                  <Button onClick={(e) => {this.handleLogin(e)}}>Log In</Button>
                 </Form>
               </Col>
             </Row>
