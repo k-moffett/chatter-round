@@ -8,29 +8,73 @@ export default class Login extends Component {
         this.state = {
             email: '',
             password: '',
-            sessid: ''
+            sessid: '',
+            formErrors: '',
+            emailVaild: false,
+            passwordValid: false,
+            formValid: false
         }
         this.setSessid = this.setSessid.bind(this)
-        this.handleEmail = this.handleEmail.bind(this)
-        this.handlePassword = this.handlePassword.bind(this)
+        this.handleUserInput = this.handleUserInput.bind(this)
         this.handleLogin = this.handleLogin.bind(this)
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.setSessid()
     }
 
     setSessid() {
+        console.log(document.cookie)
         this.setState({sessid: document.cookie})
     }
 
-    handleEmail(event) {
-        this.setState({email: event.target.value});
+    handleUserInput (e) {
+        const name = e.target.name;
+        const value = e.target.value;
+        this.setState({[name]: value}, () => { this.validateField(name) });
     }
 
-    handlePassword(event) {
-        this.setState({password: event.target.value});
+    validateField(fieldName, value) {
+        let fieldValidationErrors = this.state.fieldValidationErrors 
+        let emailValid = this.state.emailValid
+        let passwordValid = this.state.passwordValid 
+      
+        switch(fieldName) {
+          case 'email':
+            const emailVal = /^(?=.*[@])(?=.*[/.])/
+            if (emailVal.test(this.state.email.toString()) === true) {
+                console.log('email valid')
+                emailValid = true
+            } else {
+                console.log('You must enter a valid email.')
+                fieldValidationErrors = 'You must enter a valid email.'
+            }
+          break;          
+          case 'password':
+            const passVal = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
+            if (passVal.test(this.state.password.toString()) === true) {
+                console.log('password true')
+                passwordValid = true
+            } else {
+                console.log('Your password must be between 6 and 16 characters long and include one of each of the following: lowercase character, uppercase character, special character, and number.')
+                fieldValidationErrors = 'Your password must be between 6 and 16 characters long and include one of each of the following: lowercase character, uppercase character, special character, and number.'
+            }
+            break;
+          default:
+            break;
+        }
+        this.setState({
+            formErrors: fieldValidationErrors,
+            emailValid: emailValid,
+            passwordValid: passwordValid,
+            }, this.validateForm);
     }
+
+    validateForm() {
+        if (this.state.emailValid && this.state.passwordValid) {
+            this.setState({formValid: true});
+        }
+      }
 
     handleLogin(e) {
         e.preventDefault()
@@ -45,13 +89,13 @@ export default class Login extends Component {
                 <Form>
                   <FormGroup>
                     <Label for="email">Email</Label>
-                    <Input type="email" value={this.state.email} onChange={this.handleEmail} placeholder="enter your email" />
+                    <Input type="email" name="email" value={this.state.email} onChange={this.handleUserInput} placeholder="enter your email" />
                   </FormGroup>
                   <FormGroup>
                     <Label for="password">Password</Label>
-                    <Input type="text" value={this.state.password} onChange={this.handlePassword} placeholder="enter your password" />
+                    <Input type="text" name="password" value={this.state.password} onChange={this.handleUserInput} placeholder="enter your password" />
                   </FormGroup>
-                  <Button onClick={(e) => {this.handleLogin(e)}}>Log In</Button>
+                  <Button disabled={!this.state.formValid} onClick={(e) => {this.handleLogin(e)}}>Log In</Button>
                 </Form>
               </Col>
             </Row>

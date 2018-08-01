@@ -152,7 +152,7 @@ export default class SignUp extends Component {
                   </FormGroup>
                   <FormGroup>
                     <Label for="passwordMatch">Verify Password</Label>
-                    <Input type="text" name="passwordMatch" value={this.state.passwordMatch} onChange={this.handleUserInput} placeholder="verify your password" />
+                    <Input type="password" name="passwordMatch" value={this.state.passwordMatch} onChange={this.handleUserInput} placeholder="verify your password" />
                   </FormGroup>
                   <Button disabled={!this.state.formValid} onClick={(e) => {this.handleSignUp(e)}}>Sign Up</Button>
                 </Form>
