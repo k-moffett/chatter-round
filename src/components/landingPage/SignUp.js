@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col, Button, Form, FormGroup, Input, Label } from 'reactstrap'
-import { resolve } from 'url'
 const moment = require('moment');
-moment().format();
+const hash = require('hash.js')
 
 export default class SignUp extends Component {
     constructor(props) {
@@ -126,6 +125,29 @@ export default class SignUp extends Component {
     handleSignUp(e) {
         e.preventDefault()
         console.log(this.state)
+        console.log(hash.sha256().update(this.state.password).digest('hex'))
+        fetch('/signup', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                userName: this.state.username,
+                email: this.state.email,
+                dateOfBirth: this.state.dateOfBirth,
+                password: hash.sha256().update(this.state.password).digest('hex'),
+                sessid: this.state.sessid
+            })
+
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson, 'responseJson')
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 
     render() {
