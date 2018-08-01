@@ -24,7 +24,6 @@ export default class Login extends Component {
     }
 
     setSessid() {
-        console.log(document.cookie)
         this.setState({sessid: document.cookie})
     }
 

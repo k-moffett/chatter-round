@@ -1,12 +1,13 @@
-const crypto = require('crypto')
+const crypto = require('crypto');
+const userController = require('./controllers/userController')
 
 const nonce = () => {
-        let text = ''
-        let selection = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+        let text = '';
+        let selection = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 	    for (i=0; i<20; i++) {
-                text += selection.charAt(Math.floor(Math.random()*selection.length))
-            }
-        return text
+                text += selection.charAt(Math.floor(Math.random()*selection.length));
+            };
+        return text;
     }
 
 module.exports = (app) => {
@@ -16,7 +17,8 @@ module.exports = (app) => {
       });
 
     app.post('/signup', (req, res) => {
-        console.log(req.body)
-    })
+        console.log(req.body);
+        userController.userSignUp(req.body)
+    });
       
-}
+};

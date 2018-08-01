@@ -32,7 +32,6 @@ export default class SignUp extends Component {
     }
 
     setSessid() {
-        console.log(document.cookie)
         this.setState({sessid: document.cookie})
     }
 
@@ -124,8 +123,6 @@ export default class SignUp extends Component {
 
     handleSignUp(e) {
         e.preventDefault()
-        console.log(this.state)
-        console.log(hash.sha256().update(this.state.password).digest('hex'))
         fetch('/signup', {
             method: 'POST',
             headers: {
