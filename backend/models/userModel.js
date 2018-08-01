@@ -3,6 +3,7 @@ const connection = require('../config/db/connection');
 const userModel = {
 
     signUp(userInfo) {
+        console.log(userInfo)
         return new Promise((resolve, reject) => {
             connection.connect();
 
