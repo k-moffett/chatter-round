@@ -64,18 +64,24 @@ export default class SignUp extends Component {
         let today = moment(moment().format('YYYY-MM-DD'))
         let dob = moment(this.state.dateOfBirth.toString())
         let dateDiff = today.diff(dob, 'years', true)
+        if (dateDiff === "" | dateDiff === NaN | dateDiff < 13) {
+            console.log(`Looks like you are't old enough, or you have entered an invalid date.`)
+        } else if (dateDiff > 13) {
+            console.log('You are old enough!')
+        } else {
+            console.log('You must enter a valid date of birth.')
+        }
         // return new Promise((resolve, reject) => {
         // });
     }
 
     validatePassword() {
-        const strongPass = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})")
-        const upper = new RegExp("^(.*?[A-Z])")
-        const lower = new RegExp("(^?=.*[a-z])")
-        const num = new RegExp("(^?=.*[0-9])")
-        const special = new RegExp("(?=.*[!@#\$%\^&\*])")
-        const length = new RegExp("(?=.*{8,})")
-        console.log(this.state.password.toString())
+        const passVal = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
+        if (passVal.test(this.state.password.toString()) === true) {
+            console.log('meets all requirements')
+        } else {
+            console.log('Your password must be at least 6 characters long and include one of each of the following: lowercase character, uppercase character, special character, and number.')
+        }
 
     }
 
