@@ -32,7 +32,7 @@ export default class SignUp extends Component {
     }
 
     setSessid() {
-        console.log(document.cookie)
+        console.log(document.cookie, 'COOKIE???')
         this.setState({sessid: document.cookie})
     }
 
@@ -132,7 +132,7 @@ export default class SignUp extends Component {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                userName: this.state.username,
+                userName: this.state.userName,
                 email: this.state.email,
                 dateOfBirth: this.state.dateOfBirth,
                 password: hash.sha256().update(this.state.password).digest('hex'),
