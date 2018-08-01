@@ -19,6 +19,8 @@ module.exports = (app) => {
     app.post('/signup', (req, res) => {
         console.log(req.body);
         userController.userSignUp(req.body)
+        .then((response) => {console.log(response)})
+        .catch((error) => {console.log(error)})
     });
       
 };

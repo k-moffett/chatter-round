@@ -4,7 +4,7 @@ const userController = {
 
     userSignUp(userInfo) {
         console.log(userInfo, 'USERCONTROLLER')
-        userModel.signUp()
+        return userModel.signUp()
     },
 
     userLogin() {
