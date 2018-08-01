@@ -9,19 +9,22 @@ export default class SignUp extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: '',
+            userName: '',
             email: '',
             dateOfBirth: '',
             password: '',
-            password2: '',
-            sessid: ''
+            passwordMatch: '',
+            sessid: '',
+            formErrors: '',
+            userNameValid: false,
+            emailVaild: false,
+            dateOfBirthValid: false,
+            passwordValid: false,
+            passwordMatchValid: false,
+            formValid: false
         }
         this.setSessid = this.setSessid.bind(this)
-        this.handleUserName = this.handleUserName.bind(this)
-        this.handleEmail = this.handleEmail.bind(this)
-        this.handleDatOfBirth = this.handleDatOfBirth.bind(this)
-        this.handlePassword = this.handlePassword.bind(this)
-        this.handlePassword2 =this.handlePassword2.bind(this)
+        this.handleUserInput = this.handleUserInput.bind(this)
         this.handleSignUp = this.handleSignUp.bind(this)
     }
 
@@ -34,57 +37,96 @@ export default class SignUp extends Component {
         this.setState({sessid: document.cookie})
     }
 
-    handleUserName(event) {
-        this.setState({username: event.target.value})
+    handleUserInput (e) {
+        const name = e.target.name;
+        const value = e.target.value;
+        this.setState({[name]: value}, () => { this.validateField(name) });
     }
 
-    handleEmail(event) {
-        this.setState({email: event.target.value})
+    validateField(fieldName, value) {
+        let fieldValidationErrors = this.state.fieldValidationErrors 
+        let userNameValid = this.state.userNameValid 
+        let emailValid = this.state.emailValid
+        let dateOfBirthValid = this.state.dateOfBirthValid
+        let passwordValid = this.state.passwordValid 
+        let passwordMatchValid = this.state.passwordMatchValid 
+      
+        switch(fieldName) {
+          case 'userName':
+            if (this.state.userName.toString().length > 4) {
+                console.log('Username is long enough.')
+                userNameValid = true
+            } else {
+                console.log('Usernames must have a length greater than 4 characters.')
+                fieldValidationErrors = 'Usernames must have a length greater than 4 characters.'
+            }
+          break;
+          case 'email':
+            const emailVal = /^(?=.*[@])(?=.*[/.])/
+            if (emailVal.test(this.state.email.toString()) === true) {
+                console.log('email valid')
+                emailValid = true
+            } else {
+                console.log('You must enter a valid email.')
+                fieldValidationErrors = 'You must enter a valid email.'
+            }
+          break;
+          case 'dateOfBirth':
+            let today = moment(moment().format('YYYY-MM-DD'))
+            let dob = moment(this.state.dateOfBirth.toString())
+            let dateDiff = today.diff(dob, 'years', true)
+            if (dateDiff === "" | dateDiff === NaN | dateDiff < 13) {
+                fieldValidationErrors = `Looks like you are't old enough, or you have entered an invalid date.`
+            } else if (dateDiff > 13) {
+                console.log('You are old enough!')
+                dateOfBirthValid = true
+            } else {
+                console.log('You must enter a valid date of birth.')
+                fieldValidationErrors = 'You must enter a valid date of birth.'
+            }
+            break;           
+          case 'password':
+            const passVal = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
+            if (passVal.test(this.state.password.toString()) === true) {
+                console.log('password true')
+                passwordValid = true
+            } else {
+                console.log('Your password must be between 6 and 16 characters long and include one of each of the following: lowercase character, uppercase character, special character, and number.')
+                fieldValidationErrors = 'Your password must be between 6 and 16 characters long and include one of each of the following: lowercase character, uppercase character, special character, and number.'
+            }
+            break;
+           case "passwordMatch":
+            if (this.state.password === this.state.passwordMatch) {
+                console.log('Passwords Match')
+                passwordMatchValid = true
+            } else {
+                console.log('Your passwords do not match.')
+                fieldValidationErrors = 'Your passwords do not match.'
+            }
+            break;
+          default:
+            break;
+        }
+        this.setState({
+            formErrors: fieldValidationErrors,
+            userNameValid: userNameValid,
+            emailValid: emailValid,
+            dateOfBirthValid: dateOfBirthValid,
+            passwordValid: passwordValid,
+            passwordMatchValid: passwordMatchValid
+            }, this.validateForm);
     }
 
-    handleDatOfBirth(event) {
-        this.setState({dateOfBirth: event.target.value})
-    }
-
-    handlePassword(event) {
-        this.setState({password: event.target.value})
-    }
-
-    handlePassword2(event) {
-        this.setState({password2: event.target.value})
-    }
+    validateForm() {
+        if (this.state.userNameValid && this.state.emailValid && this.state.dateOfBirthValid && this.state.passwordValid && this.state.passwordMatchValid) {
+            this.setState({formValid: true});
+        }
+      }
 
     handleSignUp(e) {
         e.preventDefault()
         console.log(this.state)
     }
-
-    validateDateOfBirth(e) {
-        e.preventDefault()
-        let today = moment(moment().format('YYYY-MM-DD'))
-        let dob = moment(this.state.dateOfBirth.toString())
-        let dateDiff = today.diff(dob, 'years', true)
-        if (dateDiff === "" | dateDiff === NaN | dateDiff < 13) {
-            console.log(`Looks like you are't old enough, or you have entered an invalid date.`)
-        } else if (dateDiff > 13) {
-            console.log('You are old enough!')
-        } else {
-            console.log('You must enter a valid date of birth.')
-        }
-        // return new Promise((resolve, reject) => {
-        // });
-    }
-
-    validatePassword() {
-        const passVal = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
-        if (passVal.test(this.state.password.toString()) === true) {
-            console.log('meets all requirements')
-        } else {
-            console.log('Your password must be at least 6 characters long and include one of each of the following: lowercase character, uppercase character, special character, and number.')
-        }
-
-    }
-
 
     render() {
         return(
@@ -93,28 +135,26 @@ export default class SignUp extends Component {
               <h1>Sign Up!</h1>
                 <Form>
                   <FormGroup>
-                    <Label for="username">Username</Label>
-                    <Input type="text" value={this.state.username} onChange={this.handleUserName} placeholder="enter a username" />
+                    <Label for="userName">Username</Label>
+                    <Input type="text" name="userName" value={this.state.userName} onChange={this.handleUserInput} placeholder="enter a username" />
                   </FormGroup>
                   <FormGroup>
                     <Label for="email">Email</Label>
-                    <Input type="email" value={this.state.email} onChange={this.handleEmail} placeholder="enter your email" />
+                    <Input type="email" name="email" value={this.state.email} onChange={this.handleUserInput} placeholder="enter your email" />
                   </FormGroup>
                   <FormGroup>
                     <Label for="dateOfBirth">Date of Birth</Label>
-                    <Input type="date" value={this.state.dateOfBirth} onChange={this.handleDatOfBirth} placeholder="enter date of birth" />
+                    <Input type="date" name="dateOfBirth" value={this.state.dateOfBirth} onChange={this.handleUserInput} placeholder="enter date of birth" />
                   </FormGroup>
                   <FormGroup>
                     <Label for="password">Password</Label>
-                    <Input type="text" value={this.state.password} onChange={this.handlePassword} placeholder="enter a password" />
+                    <Input type="text" name="password" value={this.state.password} onChange={this.handleUserInput} placeholder="enter a password" />
                   </FormGroup>
                   <FormGroup>
-                    <Label for="password2">Verify Password</Label>
-                    <Input type="text" value={this.state.password2} onChange={this.handlePassword2} placeholder="verify your password" />
+                    <Label for="passwordMatch">Verify Password</Label>
+                    <Input type="text" name="passwordMatch" value={this.state.passwordMatch} onChange={this.handleUserInput} placeholder="verify your password" />
                   </FormGroup>
-                  <Button onClick={(e) => {this.handleSignUp(e)}}>Sign Up</Button>
-                  <Button onClick={(e) => {this.validateDateOfBirth(e)}}>DOB</Button>
-                  <Button onClick={(e) => {this.validatePassword(e)}}>Test Pass</Button>
+                  <Button disabled={!this.state.formValid} onClick={(e) => {this.handleSignUp(e)}}>Sign Up</Button>
                 </Form>
               </Col>
             </Row>
