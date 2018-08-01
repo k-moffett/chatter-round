@@ -32,6 +32,7 @@ export default class SignUp extends Component {
     }
 
     setSessid() {
+        console.log(document.cookie)
         this.setState({sessid: document.cookie})
     }
 
@@ -48,10 +49,11 @@ export default class SignUp extends Component {
         let dateOfBirthValid = this.state.dateOfBirthValid
         let passwordValid = this.state.passwordValid 
         let passwordMatchValid = this.state.passwordMatchValid 
+        let username = this.state.username
       
         switch(fieldName) {
           case 'userName':
-            if (this.state.userName.toString().length > 4) {
+            if (username.toString().length > 4) {
                 console.log('Username is long enough.')
                 console.log(this.state.username)
                 userNameValid = true
