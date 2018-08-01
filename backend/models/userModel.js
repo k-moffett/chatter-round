@@ -1,17 +1,19 @@
-const connection = require('../config/db/connection')
+const connection = require('../config/db/connection');
 
 const userModel = {
 
-    signUp() {
-        connection.connect();
- 
-        connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
-        if (error) throw error;
-        console.log('The solution is: ', results[0].solution);
+    signUp(userInfo) {
+        return new Promise((resolve, reject) => {
+            connection.connect();
+    
+            connection.query(`SELECT * FROM users WHERE email = ${connection.escape(userInfo.email)}`, function (error, results, fields) {
+            if (error) throw error;
+            console.log(results);
+            });
+    
+            connection.end();
         });
- 
-        connection.end();
-    }
+    },
 
 };
 
