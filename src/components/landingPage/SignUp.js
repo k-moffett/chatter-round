@@ -53,6 +53,7 @@ export default class SignUp extends Component {
           case 'userName':
             if (this.state.userName.toString().length > 4) {
                 console.log('Username is long enough.')
+                console.log(this.state.username)
                 userNameValid = true
             } else {
                 console.log('Usernames must have a length greater than 4 characters.')
