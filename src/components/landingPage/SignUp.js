@@ -70,6 +70,12 @@ export default class SignUp extends Component {
 
     validatePassword() {
         const strongPass = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})")
+        const upper = new RegExp("^(.*?[A-Z])")
+        const lower = new RegExp("(^?=.*[a-z])")
+        const num = new RegExp("(^?=.*[0-9])")
+        const special = new RegExp("(?=.*[!@#\$%\^&\*])")
+        const length = new RegExp("(?=.*{8,})")
+        console.log(this.state.password.toString())
 
     }
 
@@ -101,7 +107,8 @@ export default class SignUp extends Component {
                     <Input type="text" value={this.state.password2} onChange={this.handlePassword2} placeholder="verify your password" />
                   </FormGroup>
                   <Button onClick={(e) => {this.handleSignUp(e)}}>Sign Up</Button>
-                  <Button onClick={(e) => {this.validateDateOfBirth(e)}}>Test get Date</Button>
+                  <Button onClick={(e) => {this.validateDateOfBirth(e)}}>DOB</Button>
+                  <Button onClick={(e) => {this.validatePassword(e)}}>Test Pass</Button>
                 </Form>
               </Col>
             </Row>
