@@ -21,7 +21,7 @@ export default class SignUp extends Component {
             passwordMatchValid: false,
             formValid: false
         };
-        this.setSessid = this.setSessid.bind(this);
+        // this.setSessid = this.setSessid.bind(this);
         this.handleUserInput = this.handleUserInput.bind(this);
         this.handleSignUp = this.handleSignUp.bind(this);
     }
