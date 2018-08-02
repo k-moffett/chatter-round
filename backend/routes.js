@@ -21,8 +21,8 @@ module.exports = (app) => {
         console.log('sessid ROUTES: ', sessid)
         userController.userSignUp(req.body, sessid)
         .then((response) => {
-            res.cookie('sessid' , sessid)
             console.log(response, '/signup RESPONSE')})
+            res.cookie('sessid' , sessid)
         .catch((error) => {console.log(error)});
     });
       
