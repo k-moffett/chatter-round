@@ -19,7 +19,8 @@ module.exports = (app) => {
     app.post('/signup', (req, res) => {
         let sessid = crypto.createHash('sha256').update(`${nonce()+Date.now()}`).digest('hex')
         console.log('sessid ROUTES: ', sessid)
-        userController.userSignUp(req.body, sessid)
+        let userInfo = req.body
+        userController.userSignUp(userInfo, sessid)
         .then((response) => {
             console.log( '/signup RESPONSE: ',response.body)
             res.cookie({'sessid': sessid})
