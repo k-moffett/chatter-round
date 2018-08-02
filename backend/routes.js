@@ -18,11 +18,11 @@ module.exports = (app) => {
 
     app.post('/signup', (req, res) => {
         let sessid = crypto.createHash('sha256').update(`${nonce()+Date.now()}`).digest('hex')
-        console.log('sessid ROUTES: ', sessid)
         let userInfo = req.body
+        console.log('sessid ROUTES: ', sessid)
         userController.userSignUp(userInfo, sessid)
         .then((response) => {
-            console.log( '/signup RESPONSE: ',response)
+            console.log( '/signup RESPONSE: ', response)
             res.cookie({'sessid': sessid})
         })
         .catch((error) => {console.log(error)});

@@ -16,9 +16,9 @@ const userModel = {
             return new Promise((resolve, reject) => {
                 connection.connect();
 
-                connection.query(`INSERT INTO users (username, email, dateOfBirth, password, sessid) VALUES (${connection.escape(userInfo.username)}, ${connection.escape(userInfo.email)}, ${connection.escape(userInfo.email)}, ${connection.escape(userInfo.dateOfBirth)}, ${connection.escape(userInfo.password)}, ${connection.escape(sessid)});`, function (error, results, fields) {
+                connection.query(`INSERT INTO users (username, email, dateOfBirth, password, sessid) VALUES (${connection.escape(userInfo.userName)}, ${connection.escape(userInfo.email)}, ${connection.escape(userInfo.email)}, ${connection.escape(userInfo.dateOfBirth)}, ${connection.escape(userInfo.password)}, ${connection.escape(sessid)});`, function (error, results, fields) {
                 if (error) throw error && reject(error);
-                console.log(results, 'USERMODEL RESULTS');
+                console.log( 'USERMODEL RESULTS: ', results);
                 resolve(results)
                 });
             })
