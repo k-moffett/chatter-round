@@ -1,19 +1,18 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Row, Col, Button, Form, FormGroup, Input, Label } from 'reactstrap'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { Row, Col, Button, Form, FormGroup, Input, Label } from 'reactstrap';
 const moment = require('moment');
-const hash = require('hash.js')
+const hash = require('hash.js');
 
 export default class SignUp extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             userName: '',
             email: '',
             dateOfBirth: '',
             password: '',
             passwordMatch: '',
-            sessid: '',
             formErrors: '',
             userNameValid: false,
             emailVaild: false,
@@ -21,87 +20,87 @@ export default class SignUp extends Component {
             passwordValid: false,
             passwordMatchValid: false,
             formValid: false
-        }
-        this.setSessid = this.setSessid.bind(this)
-        this.handleUserInput = this.handleUserInput.bind(this)
-        this.handleSignUp = this.handleSignUp.bind(this)
+        };
+        this.setSessid = this.setSessid.bind(this);
+        this.handleUserInput = this.handleUserInput.bind(this);
+        this.handleSignUp = this.handleSignUp.bind(this);
     }
 
-    componentDidMount() {
-        this.setSessid()
-    }
+    // componentDidMount() {
+    //     this.setSessid();
+    // };
 
-    setSessid() {
-        console.log(document.cookie, 'COOKIE???')
-        this.setState({sessid: document.cookie})
-    }
+    // setSessid() {
+    //     console.log(document.cookie, 'COOKIE???');
+    //     this.setState({sessid: document.cookie});
+    // };
 
     handleUserInput (e) {
         const name = e.target.name;
         const value = e.target.value;
         this.setState({[name]: value}, () => { this.validateField(name) });
-    }
+    };
 
     validateField(fieldName, value) {
-        let fieldValidationErrors = this.state.fieldValidationErrors 
-        let userNameValid = this.state.userNameValid 
-        let emailValid = this.state.emailValid
-        let dateOfBirthValid = this.state.dateOfBirthValid
-        let passwordValid = this.state.passwordValid 
-        let passwordMatchValid = this.state.passwordMatchValid 
+        let fieldValidationErrors = this.state.fieldValidationErrors;
+        let userNameValid = this.state.userNameValid;
+        let emailValid = this.state.emailValid;
+        let dateOfBirthValid = this.state.dateOfBirthValid;
+        let passwordValid = this.state.passwordValid; 
+        let passwordMatchValid = this.state.passwordMatchValid; 
       
         switch(fieldName) {
           case 'userName':
             if (this.state.userName.toString().length > 4) {
-                console.log('Username is long enough.')
-                console.log(this.state.userName)
-                userNameValid = true
+                console.log('Username is long enough.');
+                console.log(this.state.userName);
+                userNameValid = true;
             } else {
-                console.log('Usernames must have a length greater than 4 characters.')
-                fieldValidationErrors = 'Usernames must have a length greater than 4 characters.'
+                console.log('Usernames must have a length greater than 4 characters.');
+                fieldValidationErrors = 'Usernames must have a length greater than 4 characters.';
             }
           break;
           case 'email':
-            const emailVal = /^(?=.*[@])(?=.*[/.])/
+            const emailVal = /^(?=.*[@])(?=.*[/.])/;
             if (emailVal.test(this.state.email.toString()) === true) {
-                console.log('email valid')
-                emailValid = true
+                console.log('email valid');
+                emailValid = true;
             } else {
-                console.log('You must enter a valid email.')
-                fieldValidationErrors = 'You must enter a valid email.'
+                console.log('You must enter a valid email.');
+                fieldValidationErrors = 'You must enter a valid email.';
             }
           break;
           case 'dateOfBirth':
-            let today = moment(moment().format('YYYY-MM-DD'))
-            let dob = moment(this.state.dateOfBirth.toString())
-            let dateDiff = today.diff(dob, 'years', true)
+            let today = moment(moment().format('YYYY-MM-DD'));
+            let dob = moment(this.state.dateOfBirth.toString());
+            let dateDiff = today.diff(dob, 'years', true);
             if (dateDiff === "" | dateDiff === NaN | dateDiff < 13) {
-                fieldValidationErrors = `Looks like you are't old enough, or you have entered an invalid date.`
+                fieldValidationErrors = `Looks like you are't old enough, or you have entered an invalid date.`;
             } else if (dateDiff > 13) {
-                console.log('You are old enough!')
-                dateOfBirthValid = true
+                console.log('You are old enough!');
+                dateOfBirthValid = true;
             } else {
-                console.log('You must enter a valid date of birth.')
+                console.log('You must enter a valid date of birth.');
                 fieldValidationErrors = 'You must enter a valid date of birth.'
             }
             break;           
           case 'password':
-            const passVal = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
+            const passVal = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
             if (passVal.test(this.state.password.toString()) === true) {
-                console.log('password true')
-                passwordValid = true
+                console.log('password true');
+                passwordValid = true;
             } else {
-                console.log('Your password must be between 6 and 16 characters long and include one of each of the following: lowercase character, uppercase character, special character, and number.')
-                fieldValidationErrors = 'Your password must be between 6 and 16 characters long and include one of each of the following: lowercase character, uppercase character, special character, and number.'
+                console.log('Your password must be between 6 and 16 characters long and include one of each of the following: lowercase character, uppercase character, special character, and number.');
+                fieldValidationErrors = 'Your password must be between 6 and 16 characters long and include one of each of the following: lowercase character, uppercase character, special character, and number.';
             }
             break;
            case "passwordMatch":
             if (this.state.password === this.state.passwordMatch) {
-                console.log('Passwords Match')
-                passwordMatchValid = true
+                console.log('Passwords Match');
+                passwordMatchValid = true;
             } else {
-                console.log('Your passwords do not match.')
-                fieldValidationErrors = 'Your passwords do not match.'
+                console.log('Your passwords do not match.');
+                fieldValidationErrors = 'Your passwords do not match.';
             }
             break;
           default:
@@ -115,7 +114,7 @@ export default class SignUp extends Component {
             passwordValid: passwordValid,
             passwordMatchValid: passwordMatchValid
             }, this.validateForm);
-    }
+    };
 
     validateForm() {
         if (this.state.userNameValid && this.state.emailValid && this.state.dateOfBirthValid && this.state.passwordValid && this.state.passwordMatchValid) {
@@ -124,7 +123,7 @@ export default class SignUp extends Component {
       }
 
     handleSignUp(e) {
-        e.preventDefault()
+        e.preventDefault();
         fetch('/signup', {
             method: 'POST',
             headers: {
@@ -136,18 +135,16 @@ export default class SignUp extends Component {
                 email: this.state.email,
                 dateOfBirth: this.state.dateOfBirth,
                 password: hash.sha256().update(this.state.password).digest('hex'),
-                sessid: this.state.sessid
             })
-
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson, 'responseJson')
+                console.log(responseJson, 'responseJson');
             })
             .catch((error) => {
                 console.error(error);
             });
-    }
+    };
 
     render() {
         return(
@@ -179,6 +176,6 @@ export default class SignUp extends Component {
                 </Form>
               </Col>
             </Row>
-        )
-    }
-}
+        );
+    };
+};

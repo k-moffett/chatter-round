@@ -13,14 +13,17 @@ const nonce = () => {
 module.exports = (app) => {
 
 	app.get('/', (req, res) => {
-        res.cookie('sessid' , crypto.createHash('sha256').update(`${nonce()+Date.now()}`).digest('hex')).sendFile(path.join( __dirname, 'build'));
+        res.sendFile(path.join( __dirname, 'build'));
       });
 
     app.post('/signup', (req, res) => {
-        console.log(req.body);
-        userController.userSignUp(req.body)
-        .then((response) => {console.log(response)})
-        .catch((error) => {console.log(error)})
+        let sessid = res.cookie('sessid' , crypto.createHash('sha256').update(`${nonce()+Date.now()}`).digest('hex'))
+        console.log('sessid ROUTES: ', sessid)
+        userController.userSignUp(req.body, sessid)
+        .then((response) => {
+            res.cookie('sessid' , sessid)
+            console.log(response, '/signup RESPONSE')})
+        .catch((error) => {console.log(error)});
     });
       
 };
