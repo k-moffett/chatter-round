@@ -22,7 +22,7 @@ module.exports = (app) => {
         let userInfo = req.body
         userController.userSignUp(userInfo, sessid)
         .then((response) => {
-            console.log( '/signup RESPONSE: ',response.body)
+            console.log( '/signup RESPONSE: ',response)
             res.cookie({'sessid': sessid})
         })
         .catch((error) => {console.log(error)});
