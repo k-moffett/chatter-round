@@ -17,7 +17,7 @@ module.exports = (app) => {
       });
 
     app.post('/signup', (req, res) => {
-        let sessid = res.cookie('sessid' , crypto.createHash('sha256').update(`${nonce()+Date.now()}`).digest('hex'))
+        let sessid = crypto.createHash('sha256').update(`${nonce()+Date.now()}`).digest('hex')
         console.log('sessid ROUTES: ', sessid)
         userController.userSignUp(req.body, sessid)
         .then((response) => {
