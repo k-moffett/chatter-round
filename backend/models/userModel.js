@@ -3,14 +3,17 @@ connection.connect();
 
 const userModel = {
 
-    signUp(userInfo, sessid) {
+    doesEmailExist(userInfo, sessid) {
         console.log(userInfo, sessid)
         console.log('sessid USERMODEL: ', sessid)
+        return new Promise((resolve, reject) => {
 
             connection.query(`SELECT * FROM users WHERE email = ${connection.escape(userInfo.email)}`, function (error, results, fields) {
             if (error) throw error;
             console.log(results, 'USERMODEL RESULTS');
             });
+
+        })
 
     },
 
@@ -23,7 +26,7 @@ const userModel = {
                 resolve(results)
                 });
 
-            })
+            });
     },
 
 };
