@@ -21,19 +21,9 @@ export default class SignUp extends Component {
             passwordMatchValid: false,
             formValid: false
         };
-        // this.setSessid = this.setSessid.bind(this);
         this.handleUserInput = this.handleUserInput.bind(this);
         this.handleSignUp = this.handleSignUp.bind(this);
     }
-
-    // componentDidMount() {
-    //     this.setSessid();
-    // };
-
-    // setSessid() {
-    //     console.log(document.cookie, 'COOKIE???');
-    //     this.setState({sessid: document.cookie});
-    // };
 
     handleUserInput (e) {
         const name = e.target.name;

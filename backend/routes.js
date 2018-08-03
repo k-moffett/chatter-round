@@ -27,5 +27,14 @@ module.exports = (app) => {
         })
         .catch((error) => {console.log(error)});
     });
+
+    app.post('/login', (req, res) => {
+        let userInfo = req.body
+        let sessid = crypto.createHash('sha256').update(`${nonce()+Date.now()}`).digest('hex')
+        userController.userLogin(userInfo, sessid)
+        .then((response) => {
+            console.log(response)
+        })
+    })
       
 };
