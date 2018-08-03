@@ -13,16 +13,15 @@ const nonce = () => {
 
 const userModel = {
 
-    doesEmailExist(userInfo, /*sessid*/) {
-        console.log(userInfo, /*sessid*/)
-        console.log('sessid USERMODEL: ', /*sessid*/)
+    doesEmailExist(userInfo) {
+
         return new Promise((resolve, reject) => {
 
             connection.query(`SELECT * FROM users WHERE email = ${connection.escape(userInfo.email)}`, function (error, results, fields) {
                 if (error) throw error && reject(error);
                 console.log(results[0], 'USERMODEL RESULTS');
                 if (results[0] === undefined) {
-                    userModel.createUser(userInfo, /*sessid*/)
+                    userModel.createUser(userInfo)
                 } else {
                     resolve({'email-exists': true})
                 }
@@ -32,14 +31,13 @@ const userModel = {
 
     },
 
-    createUser(userInfo, /*sessid*/) {
+    createUser(userInfo) {
         let sessid = crypto.createHash('sha256').update(`${nonce()+Date.now()}`).digest('hex')
 
             return new Promise((resolve, reject) => {
 
                 connection.query(`INSERT INTO users (username, email, dateOfBirth, password, sessid) VALUES (${connection.escape(userInfo.userName)}, ${connection.escape(userInfo.email)}, ${connection.escape(userInfo.dateOfBirth)}, ${connection.escape(userInfo.password)}, ${connection.escape(sessid)});`, function (error, results, fields) {
                 if (error) throw error && reject(error);
-                console.log( 'USERMODEL RESULTS: ', results);
                 resolve(sessid)
                 });
 
