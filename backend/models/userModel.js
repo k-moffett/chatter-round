@@ -10,7 +10,7 @@ const userModel = {
             connection.query(`SELECT * FROM users WHERE email = ${connection.escape(userInfo.email)}`, function (error, results, fields) {
                 if (error) throw error && reject(error);
                 if (results[0] === undefined) {
-                    userModel.doesUserNameExist(userInfo, sessid);
+                    resolve(userModel.doesUserNameExist(userInfo, sessid));
                 } else {
                     resolve({'emailExists': true});
                 }
@@ -27,7 +27,7 @@ const userModel = {
             connection.query(`SELECT * FROM users WHERE username = ${connection.escape(userInfo.userName)}`, function (error, results, fields) {
                 if (error) throw error && reject(error);
                 if (results[0] === undefined) {
-                    userModel.createUser(userInfo, sessid);
+                    resolve(userModel.createUser(userInfo, sessid));
                 } else {
                     resolve({'usernameExists': true});
                 }
