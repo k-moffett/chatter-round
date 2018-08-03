@@ -17,12 +17,12 @@ module.exports = (app) => {
       });
 
     app.post('/signup', (req, res) => {
-        let sessid = crypto.createHash('sha256').update(`${nonce()+Date.now()}`).digest('hex')
+        //let sessid = crypto.createHash('sha256').update(`${nonce()+Date.now()}`).digest('hex')
         let userInfo = req.body
-        console.log('sessid ROUTES: ', sessid)
-        userController.userSignUp(userInfo, sessid)
-        .then((response) => {
-            console.log( '/signup RESPONSE: ', response)
+        console.log('sessid ROUTES: ', )
+        userController.userSignUp(userInfo, /*sessid*/)
+        .then((response, sessid) => {
+            console.log( '/signup RESPONSE: ', response, sessid)
             res.cookie('sessid', sessid).send(response)
         })
         .catch((error) => {console.log(error)});
