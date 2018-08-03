@@ -77,7 +77,24 @@ export default class Login extends Component {
 
     handleLogin(e) {
         e.preventDefault()
-        console.log(this.state)
+        fetch('/login', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: this.state.email,
+                password: hash.sha256().update(this.state.password).digest('hex'),
+            })
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log('responseJson: ', responseJson);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 
     render() {
