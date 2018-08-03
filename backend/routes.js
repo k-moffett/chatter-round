@@ -11,8 +11,11 @@ module.exports = (app) => {
         userController.userSignUp(userInfo, /*sessid*/)
         .then((response) => {
             console.log( '/signup RESPONSE: ', response)
-            console.log(response.sessid)
+            if (response.sessid === undefined) {
+                res.send(response.email-exists)
+            } else {
             res.cookie('sessid', response.sessid)
+            }
         })
         .catch((error) => {console.log(error)});
     });
