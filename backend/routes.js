@@ -14,7 +14,7 @@ module.exports = (app) => {
                 res.send(response.emailExists)
             } else {
                 console.log(response.sessid)
-            res.cookie('sessid', response.sessid)
+            res.cookie('sessid', response.sessid.toString())
             }
         })
         .catch((error) => {console.log(error)});
