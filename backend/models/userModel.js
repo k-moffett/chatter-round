@@ -55,7 +55,7 @@ const userModel = {
 
             connection.query(`SELECT * FROM users WHERE email=${connection.escape(userInfo.email)};`, function (error, results, fields) {
                 if (error) throw error && reject(error);
-                console.log(results[0].password)
+                console.log('userModel PASSWORD: ', results[0].password)
                 if (results[0].password === userInfo.password){
                     resolve(userModel.loginUser(userInfo, sessid))
                 } else {
