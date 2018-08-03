@@ -54,10 +54,7 @@ const userModel = {
 
                 connection.query(`INSERT INTO users (username, email, dateOfBirth, password, sessid) VALUES (${connection.escape(userInfo.userName)}, ${connection.escape(userInfo.email)}, ${connection.escape(userInfo.dateOfBirth)}, ${connection.escape(userInfo.password)}, ${connection.escape(sessid)});`, function (error, results, fields) {
                 if (error) throw error && reject(error);
-                resolve({
-                    'emailExists': false,
-                    'sessid': sessid
-                    })
+                resolve({'emailExists': false}, sessid)
                 });
 
             });
