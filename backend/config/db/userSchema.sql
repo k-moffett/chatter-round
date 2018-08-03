@@ -5,8 +5,8 @@ CREATE TABLE users (
     username VARCHAR(50), 
     email VARCHAR(80),
     dateOfBirth VARCHAR(12),
-    password VARCHAR(16), 
-    sessid VARCHAR(150), 
+    password VARCHAR(150), 
+    sessid VARCHAR(30), 
     PRIMARY KEY (id)
 );
 

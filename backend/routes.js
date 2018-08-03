@@ -31,10 +31,10 @@ module.exports = (app) => {
     app.post('/login', (req, res) => {
         let userInfo = req.body
         let sessid = crypto.createHash('sha256').update(`${nonce()+Date.now()}`).digest('hex')
-        console.log('/login PASSWORD: ' ,userInfo.password)
+
         userController.userLogin(userInfo, sessid)
         .then((response) => {
-            console.log(response)
+            res.cookie('sessid', sessid).send(response)
         })
         .catch((error) => {console.log(error)});
     })
