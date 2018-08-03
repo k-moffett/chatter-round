@@ -20,7 +20,7 @@ const userModel = {
             connection.query(`SELECT * FROM users WHERE email = ${connection.escape(userInfo.email)}`, function (error, results, fields) {
                 if (error) throw error && reject(error);
                 if (results[0] === undefined) {
-                    return userModel.createUser(userInfo)
+                    resolve(userModel.createUser(userInfo))
                 } else {
                     resolve({'email-exists': true})
                 }
