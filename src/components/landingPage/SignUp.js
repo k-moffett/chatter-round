@@ -139,7 +139,7 @@ export default class SignUp extends Component {
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson, 'responseJson');
+                console.log('responseJson: ', responseJson);
             })
             .catch((error) => {
                 console.error(error);
