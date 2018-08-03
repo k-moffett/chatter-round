@@ -13,14 +13,14 @@ const nonce = () => {
 
 const userModel = {
 
-    doesEmailExist(userInfo) {
+    doesEmailExist(userInfo, sessid) {
 
         return new Promise((resolve, reject) => {
 
             connection.query(`SELECT * FROM users WHERE email = ${connection.escape(userInfo.email)}`, function (error, results, fields) {
                 if (error) throw error && reject(error);
                 if (results[0] === undefined) {
-                    resolve(userModel.doesUserNameExist(userInfo))
+                    resolve(userModel.doesUserNameExist(userInfo, sessid))
                 } else {
                     resolve({'emailExists': true})
                 }
@@ -30,14 +30,14 @@ const userModel = {
 
     },
 
-    doesUserNameExist(userInfo) {
+    doesUserNameExist(userInfo, sessid) {
 
         return new Promise((resolve, reject) => {
 
             connection.query(`SELECT * FROM users WHERE username = ${connection.escape(userInfo.userName)}`, function (error, results, fields) {
                 if (error) throw error && reject(error);
                 if (results[0] === undefined) {
-                    resolve(userModel.createUser(userInfo))
+                    resolve(userModel.createUser(userInfo, sessid))
                 } else {
                     resolve({'usernameExists': true})
                 }
@@ -47,14 +47,14 @@ const userModel = {
 
     },
 
-    createUser(userInfo) {
-        let sessid = crypto.createHash('sha256').update(`${nonce()+Date.now()}`).digest('hex')
+    createUser(userInfo, sessid) {
+        //let sessid = crypto.createHash('sha256').update(`${nonce()+Date.now()}`).digest('hex')
 
             return new Promise((resolve, reject) => {
 
                 connection.query(`INSERT INTO users (username, email, dateOfBirth, password, sessid) VALUES (${connection.escape(userInfo.userName)}, ${connection.escape(userInfo.email)}, ${connection.escape(userInfo.dateOfBirth)}, ${connection.escape(userInfo.password)}, ${connection.escape(sessid)});`, function (error, results, fields) {
                 if (error) throw error && reject(error);
-                resolve({'emailExists': false}, sessid)
+                resolve({'emailExists': false})
                 });
 
             });
