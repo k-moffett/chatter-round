@@ -6,7 +6,7 @@ const userController = {
         return userModel.doesEmailExist(userInfo, sessid)
     },
 
-    userLogin(userinfo) {
+    userLogin(userinfo, sessid) {
         return userModel.loginUser(userinfo, sessid)
     },
 
