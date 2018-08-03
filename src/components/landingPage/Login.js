@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Row, Col, Button, Form, FormGroup, Input, Label } from 'reactstrap';
+const hash = require('hash.js');
 
 export default class Login extends Component {
     constructor(props) {
