@@ -31,6 +31,7 @@ module.exports = (app) => {
     app.post('/login', (req, res) => {
         let userInfo = req.body
         let sessid = crypto.createHash('sha256').update(`${nonce()+Date.now()}`).digest('hex')
+        console.log(userInfo.password)
         userController.userLogin(userInfo, sessid)
         .then((response) => {
             console.log(response)
