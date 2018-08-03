@@ -10,7 +10,7 @@ const userModel = {
             connection.query(`SELECT * FROM users WHERE email = ${connection.escape(userInfo.email)}`, function (error, results, fields) {
                 if (error) throw error && reject(error);
                 if (results[0] === undefined) {
-                    resolve(userModel.doesUserNameExist(userInfo, sessid));
+                    userModel.doesUserNameExist(userInfo, sessid);
                 } else {
                     resolve({'emailExists': true});
                 }
@@ -27,7 +27,7 @@ const userModel = {
             connection.query(`SELECT * FROM users WHERE username = ${connection.escape(userInfo.userName)}`, function (error, results, fields) {
                 if (error) throw error && reject(error);
                 if (results[0] === undefined) {
-                    resolve(userModel.createUser(userInfo, sessid));
+                    userModel.createUser(userInfo, sessid);
                 } else {
                     resolve({'usernameExists': true});
                 }
@@ -51,9 +51,8 @@ const userModel = {
 
             connection.query(`SELECT * FROM users WHERE email=${connection.escape(userInfo.email)};`, function (error, results, fields) {
                 if (error) throw error && reject(error);
-                console.log('userModel PASSWORD: ', results[0].password)
                 if (results[0].password === userInfo.password){
-                    resolve(userModel.loginUser(userInfo, sessid))
+                    userModel.loginUser(userInfo, sessid);
                 } else {
                     resolve({'incorrectPassword': true})
                 }
