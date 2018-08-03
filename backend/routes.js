@@ -11,7 +11,8 @@ module.exports = (app) => {
         userController.userSignUp(userInfo, /*sessid*/)
         .then((response) => {
             console.log( '/signup RESPONSE: ', response)
-            //res.cookie('sessid', sessid).send(response)
+            console.log(respnse.sessid)
+            res.cookie('sessid', response.sessid)
         })
         .catch((error) => {console.log(error)});
     });
