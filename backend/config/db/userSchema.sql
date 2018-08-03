@@ -9,3 +9,4 @@ CREATE TABLE users (
     sessid VARCHAR(30), 
     PRIMARY KEY (id)
 );
+
