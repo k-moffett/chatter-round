@@ -6,10 +6,13 @@ const userModel = {
         console.log(userInfo, sessid)
         console.log('sessid USERMODEL: ', sessid)
             connection.connect();
+
             connection.query(`SELECT * FROM users WHERE email = ${connection.escape(userInfo.email)}`, function (error, results, fields) {
             if (error) throw error;
             console.log(results, 'USERMODEL RESULTS');
             });
+
+            connection.end();
     },
 
     createUser(userInfo, sessid) {
@@ -21,6 +24,8 @@ const userModel = {
                 console.log( 'USERMODEL RESULTS: ', results);
                 resolve(results)
                 });
+
+                connection.end();
             })
     },
 
