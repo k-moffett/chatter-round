@@ -10,10 +10,10 @@ module.exports = (app) => {
         let userInfo = req.body
         userController.userSignUp(userInfo, /*sessid*/)
         .then((response) => {
-            console.log( '/signup RESPONSE: ', response)
             if (response.sessid === undefined) {
                 res.send(response.emailExists)
             } else {
+                console.log(response.sessid)
             res.cookie('sessid', response.sessid)
             }
         })
