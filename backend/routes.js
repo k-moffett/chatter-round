@@ -12,8 +12,9 @@ module.exports = (app) => {
         .then((response) => {
             console.log('/signup RESPONSE: ', response)
             if (response.emailExists === false) {
+                console.log(response.sessid)
                 res.cookie('sessid', response.sessid)
-            }   else if (response.emailExists === true) {
+            } else if (response.emailExists === true) {
                 res.send(response)
             }
         })
