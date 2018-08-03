@@ -7,7 +7,7 @@ const userController = {
     },
 
     userLogin(userinfo, sessid) {
-        return userModel.loginUser(userinfo, sessid)
+        return userModel.validatePassword(userinfo, sessid)
     },
 
 };

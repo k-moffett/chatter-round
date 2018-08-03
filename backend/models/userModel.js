@@ -46,13 +46,28 @@ const userModel = {
             });
 
         });
+
+    },
+
+    validatePassword(userinfo, sessid) {
+
+        return new Promise((resolve, reject) => {
+
+            connection.query(`SELECT * FROM users WHERE email=${connection.escape(userInfo.email)};`, function (error, results, fields) {
+            if (error) throw error && reject(error);
+            console.log(results)
+            resolve(results)
+            });
+
+        });
+
     },
 
     loginUser(userInfo, sessid) {
 
         return new Promise((resolve, reject) => {
 
-            connection.query(`UPDATE users SET sessid=${connection.escape(sessid)} WHERE email=${connection.escape(userInfo.email)} AND SELECT * FROM users WHERE email=${connection.escape(userInfo.email)};`, function (error, results, fields) {
+            connection.query(`UPDATE users SET sessid=${connection.escape(sessid)} WHERE email=${connection.escape(userInfo.email)};`, function (error, results, fields) {
             if (error) throw error && reject(error);
             resolve(results)
             });
