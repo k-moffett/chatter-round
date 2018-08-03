@@ -12,7 +12,7 @@ module.exports = (app) => {
         .then((response) => {
             console.log( '/signup RESPONSE: ', response)
             if (response.sessid === undefined) {
-                res.send(response.email-exists)
+                res.send(response.emailExists)
             } else {
             res.cookie('sessid', response.sessid)
             }

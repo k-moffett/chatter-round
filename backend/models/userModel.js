@@ -22,7 +22,7 @@ const userModel = {
                 if (results[0] === undefined) {
                     resolve(userModel.createUser(userInfo))
                 } else {
-                    resolve({'email-exists': true})
+                    resolve({'emailExists': true})
                 }
             });
 
