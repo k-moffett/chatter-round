@@ -15,8 +15,8 @@ export default class LandingPage extends Component {
                 <h1>Chatter Round</h1>
                 </Col>
               </Row>
-              <SignUp />
-              <Login />
+              <SignUp history={this.props.history} />
+              <Login history={this.props.history} />
             </Container>
         )
     }

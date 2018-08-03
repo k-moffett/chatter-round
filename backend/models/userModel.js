@@ -66,7 +66,7 @@ const userModel = {
     loginUser(userInfo, sessid) {
 
             connection.query(`UPDATE users SET sessid=${connection.escape(sessid)} WHERE email=${connection.escape(userInfo.email)};`, function (error, results, fields) {
-            if (error) throw error && reject(error);
+                if (error) throw error && reject(error);
             });
 
     },
