@@ -42,7 +42,7 @@ const userModel = {
         return new Promise((resolve, reject) => {
 
             connection.query(`INSERT INTO users (username, email, dateOfBirth, password, sessid) VALUES (${connection.escape(userInfo.userName)}, ${connection.escape(userInfo.email)}, ${connection.escape(userInfo.dateOfBirth)}, ${connection.escape(userInfo.password)}, ${connection.escape(sessid)});`, function (error, results, fields) {
-            if (error) throw error && reject(error);
+                if (error) throw error && reject(error);
             });
 
         });
@@ -54,9 +54,14 @@ const userModel = {
         return new Promise((resolve, reject) => {
 
             connection.query(`SELECT * FROM users WHERE email=${connection.escape(userInfo.email)};`, function (error, results, fields) {
-            if (error) throw error && reject(error);
-            console.log(results)
-            resolve(results)
+                if (error) throw error && reject(error);
+                console.log(results[0].password)
+                if (results[0].password === userInfo.password){
+                    resolve(userModel.loginUser(userInfo, sessid))
+                } else {
+                    resolve({'incorrectPassword': true})
+                }
+
             });
 
         });
@@ -69,6 +74,7 @@ const userModel = {
 
             connection.query(`UPDATE users SET sessid=${connection.escape(sessid)} WHERE email=${connection.escape(userInfo.email)};`, function (error, results, fields) {
             if (error) throw error && reject(error);
+            console.log('it worked')
             resolve(results)
             });
 
