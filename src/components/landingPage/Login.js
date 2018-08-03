@@ -15,17 +15,8 @@ export default class Login extends Component {
             passwordValid: false,
             formValid: false
         }
-        this.setSessid = this.setSessid.bind(this)
         this.handleUserInput = this.handleUserInput.bind(this)
         this.handleLogin = this.handleLogin.bind(this)
-    }
-
-    componentDidMount() {
-        this.setSessid()
-    }
-
-    setSessid() {
-        this.setState({sessid: document.cookie})
     }
 
     handleUserInput (e) {
