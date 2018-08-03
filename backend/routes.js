@@ -13,8 +13,8 @@ module.exports = (app) => {
             if (response.sessid === undefined) {
                 res.send(response.emailExists)
             } else {
-                console.log(response.sessid)
-            res.cookie('sessid', response.sessid.toString())
+            let sessid = response.sessid
+            res.cookie('sessid', sessid)
             }
         })
         .catch((error) => {console.log(error)});
