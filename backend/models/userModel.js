@@ -49,7 +49,7 @@ const userModel = {
 
     },
 
-    validatePassword(userinfo, sessid) {
+    validatePassword(userInfo, sessid) {
 
         return new Promise((resolve, reject) => {
 
