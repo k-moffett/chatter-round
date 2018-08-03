@@ -22,7 +22,7 @@ module.exports = (app) => {
         console.log('sessid ROUTES: ', )
         userController.userSignUp(userInfo, /*sessid*/)
         .then((response, sessid) => {
-            console.log( '/signup RESPONSE: ', response, sessid)
+            console.log( '/signup RESPONSE: ', response)
             res.cookie('sessid', sessid).send(response)
         })
         .catch((error) => {console.log(error)});
