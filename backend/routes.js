@@ -21,8 +21,8 @@ module.exports = (app) => {
         let sessid = crypto.createHash('sha256').update(`${nonce()+Date.now()}`).digest('hex')
 
         userController.userSignUp(userInfo, sessid)
-        .then((response, sessid) => {
-            console.log('/signup RESPONSE: ', response, sessid)
+        .then((response) => {
+            console.log('/signup RESPONSE: ', response)
             res.cookie('sessid', sessid).send(response)
         })
         .catch((error) => {console.log(error)});
