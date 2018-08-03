@@ -10,7 +10,7 @@ const userModel = {
 
             connection.query(`SELECT * FROM users WHERE email = ${connection.escape(userInfo.email)}`, function (error, results, fields) {
             if (error) throw error;
-            console.log(results, 'USERMODEL RESULTS');
+            console.log(results[0], 'USERMODEL RESULTS');
             });
 
         })
