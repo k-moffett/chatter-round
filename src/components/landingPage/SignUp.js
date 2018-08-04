@@ -129,8 +129,8 @@ export default class SignUp extends Component {
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log('responseJson: ', JSON.stringify(responseJson));
-                switch(JSON.stringify(responseJson)) {
+                console.log('responseJson: ', JSON.parse(responseJson));
+                switch(responseJson) {
                     case 'emailExists':
                         console.log('An account with that email address already exists.')
                       break;
