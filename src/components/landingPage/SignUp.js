@@ -127,10 +127,10 @@ export default class SignUp extends Component {
                 password: hash.sha256().update(this.state.password).digest('hex'),
             })
         })
-            .then((response) => console.log(response))
+            .then((response) => response.json())
             .then((responseJson) => {
                 console.log('responseJson: ', responseJson);
-                switch(responseJson) {
+                switch(responseJson.response) {
                     case 'emailExists':
                         console.log('An account with that email address already exists.')
                       break;
