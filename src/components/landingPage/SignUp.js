@@ -127,7 +127,7 @@ export default class SignUp extends Component {
                 password: hash.sha256().update(this.state.password).digest('hex'),
             })
         })
-            .then((response) => response.json())
+            .then((response) => console.log(response))
             .then((responseJson) => {
                 console.log('responseJson: ', responseJson);
                 switch(responseJson) {
