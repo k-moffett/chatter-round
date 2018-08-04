@@ -129,11 +129,19 @@ export default class SignUp extends Component {
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log('responseJson: ', responseJson[0], responseJson[1]);
-                if (responseJson[0].toString() === 'accountCreated') {
-                    this.props.history.push('/home')
-                } else{
-                    console.log(responseJson[0])
+                console.log('responseJson: ', responseJson);
+                switch(responseJson) {
+                    case 'emailExists':
+                        console.log('An account with that email address already exists.')
+                      break;
+                    case 'usernameExists':
+                        console.log('An account with that username already exists.')
+                      break;
+                    case 'accountCreated':
+                        this.props.history.push('/home')
+                      break;
+                    default:
+                        console.log('something went wrong...')
                 }
             })
             .catch((error) => {

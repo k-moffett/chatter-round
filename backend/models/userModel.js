@@ -12,7 +12,7 @@ const userModel = {
                 if (results[0] === undefined) {
                     resolve(userModel.doesUserNameExist(userInfo, sessid));
                 } else {
-                    resolve(['emailExists', true]);
+                    resolve('emailExists');
                 }
             });
 
@@ -29,7 +29,7 @@ const userModel = {
                 if (results[0] === undefined) {
                     resolve(userModel.createUser(userInfo, sessid));
                 } else {
-                    resolve(['usernameExists', true]);
+                    resolve('usernameExists');
                 }
             });
 
@@ -43,7 +43,7 @@ const userModel = {
 
             connection.query(`INSERT INTO users (username, email, dateOfBirth, password, sessid) VALUES (${connection.escape(userInfo.userName)}, ${connection.escape(userInfo.email)}, ${connection.escape(userInfo.dateOfBirth)}, ${connection.escape(userInfo.password)}, ${connection.escape(sessid)});`, function (error, results, fields) {
                 if (error) throw error && reject(error);
-                resolve(['accountCreated', true])
+                resolve('accountCreated')
             });
 
         })
@@ -59,7 +59,7 @@ const userModel = {
                 if (results[0].password === userInfo.password){
                     resolve(userModel.loginUser(userInfo, sessid));
                 } else {
-                    resolve(['incorrectPassword', true])
+                    resolve('incorrectPassword')
                 }
 
             });
@@ -74,7 +74,7 @@ const userModel = {
 
             connection.query(`UPDATE users SET sessid=${connection.escape(sessid)} WHERE email=${connection.escape(userInfo.email)};`, function (error, results, fields) {
                 if (error) throw error && reject(error);
-                resolve(['loginSuccessful', true])
+                resolve('loginSuccessful')
             });
 
         })
