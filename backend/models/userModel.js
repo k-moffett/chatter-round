@@ -50,6 +50,23 @@ const userModel = {
 
     },
 
+    doesLoginEmailExist(userInfo, sessid) {
+
+        return new Promise((resolve, reject) => {
+
+            connection.query(`SELECT * FROM users WHERE email = ${connection.escape(userInfo.email)}`, function (error, results, fields) {
+                if (error) throw error && reject(error);
+                if (results[0] === undefined) {
+                    resolve({'response': 'emailDoesNotExist'});
+                } else {
+                    resolve(userModel.validatePassword(userInfo, sessid))
+                }
+            });
+
+        });
+
+    },
+
     validatePassword(userInfo, sessid) {
 
         return new Promise((resolve, reject) => {

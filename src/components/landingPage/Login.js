@@ -82,7 +82,19 @@ export default class Login extends Component {
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log('responseJson: ', responseJson);
+                switch(responseJson.response) {
+                    case 'emailDoesNotExist':
+                        console.log('An account with that email address doen not exist')
+                      break;
+                    case 'incorrectPassword':
+                        console.log('Your password is incorrect.')
+                      break;
+                    case 'loginSuccessful':
+                        this.props.history.push('/home')
+                      break;
+                    default:
+                        console.log('something went wrong...')
+                }
             })
             .catch((error) => {
                 console.error(error);
