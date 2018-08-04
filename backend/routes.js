@@ -23,7 +23,7 @@ module.exports = (app) => {
         userController.userSignUp(userInfo, sessid)
         .then((response) => {
             console.log('/signup RESPONSE: ', response)
-            res.cookie('sessid', sessid).send(response)
+            res.cookie('sessid', sessid).send({'response':response})
         })
         .catch((error) => {console.log(error)});
     });
