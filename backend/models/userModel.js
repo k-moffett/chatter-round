@@ -12,7 +12,7 @@ const userModel = {
                 if (results[0] === undefined) {
                     resolve(userModel.doesUserNameExist(userInfo, sessid));
                 } else {
-                    resolve({'emailExists': true});
+                    resolve(['emailExists', true]);
                 }
             });
 
@@ -29,7 +29,7 @@ const userModel = {
                 if (results[0] === undefined) {
                     resolve(userModel.createUser(userInfo, sessid));
                 } else {
-                    resolve({'usernameExists': true});
+                    resolve(['usernameExists', true]);
                 }
             });
 
@@ -54,7 +54,7 @@ const userModel = {
                 if (results[0].password === userInfo.password){
                     resolve(userModel.loginUser(userInfo, sessid));
                 } else {
-                    resolve({'incorrectPassword': true})
+                    resolve(['incorrectPassword', true])
                 }
 
             });

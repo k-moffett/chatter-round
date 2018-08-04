@@ -129,10 +129,12 @@ export default class SignUp extends Component {
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log('responseJson: ', responseJson[0]);
-                // if (responseJson != true) {
-                //     this.props.history.push('/home')
-                // }
+                console.log('responseJson: ', responseJson[0], responseJson[1]);
+                if (responseJson[1] != true) {
+                    this.props.history.push('/home')
+                } else{
+                    console.log(responseJson[0])
+                }
             })
             .catch((error) => {
                 console.error(error);
