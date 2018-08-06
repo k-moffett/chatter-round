@@ -38,5 +38,9 @@ module.exports = (app) => {
         })
         .catch((error) => {console.log(error)});
     })
+
+    app.post('/user_session', (req, res) => {
+        
+    })
       
 };

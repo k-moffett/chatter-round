@@ -84,7 +84,7 @@ export default class Login extends Component {
             .then((responseJson) => {
                 switch(responseJson.response) {
                     case 'emailDoesNotExist':
-                        console.log('An account with that email address doen not exist')
+                        console.log('An account with that email address does not exist')
                       break;
                     case 'incorrectPassword':
                         console.log('Your password is incorrect.')

@@ -5,6 +5,16 @@ import { Container, Row, Col, Button } from 'reactstrap';
 export default class HomePage extends Component {
     constructor(props) {
         super(props)
+        this.getSessionCookie = this.getSessionCookie.bind(this)
+    }
+
+    componentWillMount() {
+        this .getUserSession()
+    }
+
+    getUserSession() {
+        let sessid = document.cookie.split('=')[1]
+        console.log('SESSID: ',sessid)
     }
 
     render() {
