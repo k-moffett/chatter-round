@@ -6,7 +6,7 @@ CREATE TABLE users (
     email VARCHAR(80),
     dateOfBirth VARCHAR(12),
     password VARCHAR(150), 
-    sessid VARCHAR(30), 
+    sessid VARCHAR(150), 
     PRIMARY KEY (id)
 );
 

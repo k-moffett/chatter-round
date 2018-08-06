@@ -42,8 +42,10 @@ module.exports = (app) => {
 
     app.post('/user_session', (req, res) => {
         let sessid = req.body.sessid
-        console.log('/user_session', sessid)
         userController.validateAccount(sessid)
+        .then((response) => {
+            res.send(response)
+        })
     })
       
 };

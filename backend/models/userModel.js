@@ -104,7 +104,14 @@ const userModel = {
 
             connection.query(`SELECT * FROM users WHERE sessid=${connection.escape(sessid)};`, function (error, results, fields) {
                 if (error) throw error && reject(error);
-                console.log('VALIDATE ACCOUNT userModel', results)
+                let userInfo = {
+                    userName: results[0].username
+                }
+                if (results === undefined) {
+                    resolve({'response': 'accountDoesNotExist'})
+                } else {
+                    resolve(userInfo)
+                }
             });
 
         })
