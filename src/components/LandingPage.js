@@ -15,9 +15,8 @@ export default class LandingPage extends Component {
 
     getSessid() {
         let sessid = document.cookie.split('=')
-        console.log('SESSID: ',sessid)
         if (sessid[0] === 'sessid='){
-            console.log(sessid[1])
+            this.getUserInfo(sessid[1])
         }
     }
 

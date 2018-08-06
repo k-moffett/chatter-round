@@ -10,6 +10,10 @@ const userController = {
         return userModel.doesLoginEmailExist(userInfo, sessid)
     },
 
+    validateAccount() {
+        
+    }
+
 };
 
 module.exports = userController;

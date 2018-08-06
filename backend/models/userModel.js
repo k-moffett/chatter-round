@@ -98,6 +98,19 @@ const userModel = {
 
     },
 
+    validateAccount(sessid) {
+
+        return new Promise((resolve, reject) => {
+
+            connection.query(`SELECT * FROM users WHERE sessid=${connection.escape(sessid)};`, function (error, results, fields) {
+                if (error) throw error && reject(error);
+                console.log('VALIDATE ACCOUNT userModel', results)
+            });
+
+        })
+
+    }
+
 };
 
 module.exports = userModel;
