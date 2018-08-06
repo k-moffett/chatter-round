@@ -26,7 +26,7 @@ export default class HomePage extends Component {
     }
 
     getUserInfo(sessid) {
-        fetch('/user_session', {
+        fetch('/get_user', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
