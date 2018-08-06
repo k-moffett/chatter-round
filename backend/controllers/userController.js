@@ -10,8 +10,8 @@ const userController = {
         return userModel.doesLoginEmailExist(userInfo, sessid)
     },
 
-    validateAccount() {
-        
+    validateAccount(sessid) {
+        return userModel.validateAccount(sessid)
     }
 
 };
