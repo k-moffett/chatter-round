@@ -14,7 +14,11 @@ module.exports = (app) => {
 
 	app.get('/', (req, res) => {
         res.sendFile(path.join( __dirname, 'build'));
-      });
+    });
+
+    app.get('/home', (req, res) => {
+        res.sendFile(path.join( __dirname, 'build'));
+    });
 
     app.post('/signup', (req, res) => {
         let userInfo = req.body
