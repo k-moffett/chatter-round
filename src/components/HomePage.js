@@ -40,7 +40,7 @@ export default class HomePage extends Component {
             .then((responseJson) => {
                 console.log(responseJson)
                 this.setState({
-                    userInfo: responseJson.response
+                    userInfo: responseJson
                 })
             })
             .catch((error) => {
@@ -51,7 +51,7 @@ export default class HomePage extends Component {
     render() {
         return(
             <Container>
-                <h1>Welcome {this.state.userInfo.username}</h1>
+                <h1>Welcome {this.state.userInfo.userName}</h1>
                 <Link to='/'>
                     <Button color="primary" >To Landing</Button>
                 </Link>

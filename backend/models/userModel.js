@@ -125,7 +125,7 @@ const userModel = {
             connection.query(`SELECT * FROM users WHERE sessid=${connection.escape(sessid)};`, function (error, results, fields) {
                 if (error) throw error && reject(error);
                 let userInfo = {
-                    userName: results[0].username
+                    userName: results[0].userName
                 }
                 if (results === undefined) {
                     reject('accountDoesNotExist')
