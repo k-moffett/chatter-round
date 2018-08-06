@@ -51,7 +51,7 @@ export default class HomePage extends Component {
     render() {
         return(
             <Container>
-                <h1>Landing Page</h1>
+                <h1>Welcome {this.state.userInfo.username}</h1>
                 <Link to='/'>
                     <Button color="primary" >To Landing</Button>
                 </Link>
