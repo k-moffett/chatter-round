@@ -5,16 +5,47 @@ import { Container, Row, Col, Button } from 'reactstrap';
 export default class HomePage extends Component {
     constructor(props) {
         super(props)
-        this.getUserSession = this.getUserSession.bind(this)
+        this.state = {
+            userInfo: ''
+        }
+        this.getSessid = this.getSessid.bind(this)
+        this.getUserInfo = this.getUserInfo.bind(this)
     }
 
     componentWillMount() {
-        this .getUserSession()
+        this.getSessid()
     }
 
-    getUserSession() {
-        let sessid = document.cookie.split('=')[1]
-        console.log('SESSID: ',sessid)
+    getSessid() {
+        let sessid = document.cookie.split('=')
+        if (sessid[0] === 'sessid'){
+            this.getUserInfo(sessid[1])
+        } else if (sessid === undefined) {
+            this.history.push('/')
+        }
+    }
+
+    getUserInfo(sessid) {
+        fetch('/user_session', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                sessid: sessid
+            })
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson)
+                this.setState({
+                    userInfo: responseJson.response
+                })
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 
     render() {

@@ -12,6 +12,10 @@ const userController = {
 
     validateAccount(sessid) {
         return userModel.validateAccount(sessid)
+    },
+
+    getUser(sessid) {
+        return userModel.getUser(sessid)
     }
 
 };

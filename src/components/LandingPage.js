@@ -16,13 +16,11 @@ export default class LandingPage extends Component {
     getSessid() {
         let sessid = document.cookie.split('=')
         if (sessid[0] === 'sessid'){
-            console.log(sessid)
             this.getUserInfo(sessid[1])
         }
     }
 
     getUserInfo(sessid) {
-        console.log('getUserInfo')
         fetch('/user_session', {
             method: 'POST',
             headers: {
@@ -35,7 +33,13 @@ export default class LandingPage extends Component {
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson)
+                switch(responseJson.response) {
+                    case 'accountDoesNotExist':
+                        console.log('Account does not exist.')
+                      break;
+                    case 'accountDoesExist':
+                        this.history.push('/home')
+                }
             })
             .catch((error) => {
                 console.error(error);

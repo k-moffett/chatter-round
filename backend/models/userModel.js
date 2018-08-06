@@ -110,6 +110,26 @@ const userModel = {
                 if (results === undefined) {
                     resolve({'response': 'accountDoesNotExist'})
                 } else {
+                    resolve({'response': 'accountDoesExist'})
+                }
+            });
+
+        })
+
+    },
+
+    getUser(sessid) {
+
+        return new Promise((resolve, reject) => {
+
+            connection.query(`SELECT * FROM users WHERE sessid=${connection.escape(sessid)};`, function (error, results, fields) {
+                if (error) throw error && reject(error);
+                let userInfo = {
+                    userName: results[0].username
+                }
+                if (results === undefined) {
+                    reject('accountDoesNotExist')
+                } else {
                     resolve(userInfo)
                 }
             });
