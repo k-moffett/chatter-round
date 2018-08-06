@@ -9,12 +9,35 @@ export default class LandingPage extends Component {
     }
 
     componentWillMount() {
-        this .getUserSession()
+        this .getSessid()
     }
 
-    getUserSession() {
-        let sessid = document.cookie.split('=')[1]
+    getSessid() {
+        let sessid = document.cookie.split('=')
         console.log('SESSID: ',sessid)
+        if (sessid[0] === 'sessid='){
+            console.log(sessid[1])
+        }
+    }
+
+    getUserInfo(sessid) {
+        fetch('/user_session', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                sessid: sessid
+            })
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson)
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 
     render() {
