@@ -10,7 +10,6 @@ export default class HomePage extends Component {
         }
         this.getSessid = this.getSessid.bind(this)
         this.getUserInfo = this.getUserInfo.bind(this)
-        this.getData = this.getData.bind(this)
     }
 
     componentWillMount() {
@@ -53,24 +52,6 @@ export default class HomePage extends Component {
             });
     }
 
-    getData(e) {
-        e.preventDefault()
-        fetch(`https://crossorigin.me/http://api.eventful.com/json/events/family?app_key=LkRczZ6Mw7zvVqtS`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            }
-        })
-            .then((response) => response.json())
-            .then((responseJson) => {
-              console.log(responseJson)
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-      }
-
     render() {
         return(
             <Container>
@@ -78,7 +59,6 @@ export default class HomePage extends Component {
                 <Link to='/'>
                     <Button color="primary" >To Landing</Button>
                 </Link>
-                <Button color="primary" onClick={(e) => {this.getData(e)}}>To Landing</Button>
             </Container>
         )
     }
