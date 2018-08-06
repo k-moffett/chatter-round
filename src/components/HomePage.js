@@ -21,7 +21,7 @@ export default class HomePage extends Component {
         if (sessid[0] === 'sessid'){
             this.getUserInfo(sessid[1])
         } else if (sessid === undefined) {
-            this.history.push('/')
+            this.props.history.push('/')
         }
     }
 

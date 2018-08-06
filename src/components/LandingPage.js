@@ -38,7 +38,7 @@ export default class LandingPage extends Component {
                         console.log('Account does not exist.')
                       break;
                     case 'accountDoesExist':
-                        this.history.push('/home')
+                        this.props.history.push('/home')
                 }
             })
             .catch((error) => {
