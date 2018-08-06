@@ -10,7 +10,7 @@ export default class LandingPage extends Component {
     }
 
     componentWillMount() {
-        this .getSessid()
+        this.getSessid()
     }
 
     getSessid() {
