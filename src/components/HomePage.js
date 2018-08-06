@@ -20,6 +20,8 @@ export default class HomePage extends Component {
         let sessid = document.cookie.split('=')
         if (sessid[0] === 'sessid'){
             this.getUserInfo(sessid[1])
+        } else {
+            this.props.history.push('/')
         }
     }
 
