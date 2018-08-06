@@ -6,7 +6,7 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <Router>
+      <Router basename={window.location.pathname}>
         <div className="App">
           <Route exact path="/" component={LandingPage}/>
           <Route path="/home" component={HomePage}/>
