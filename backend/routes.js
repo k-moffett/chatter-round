@@ -1,3 +1,4 @@
+const path = require('path');
 const userController = require('./controllers/userController')
 const crypto = require('crypto');
 
@@ -12,11 +13,11 @@ const nonce = () => {
 
 module.exports = (app) => {
 
-    app.get('/home', (req, res) => {
+	app.get('/', (req, res) => {
         res.sendFile(path.join( __dirname, 'build'));
     });
 
-	app.get('/', (req, res) => {
+    app.get('/home', (req, res) => {
         res.sendFile(path.join( __dirname, 'build'));
     });
 
