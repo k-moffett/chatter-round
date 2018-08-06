@@ -5,7 +5,7 @@ import { Container, Row, Col, Button } from 'reactstrap';
 export default class LandingPage extends Component {
     constructor(props) {
         super(props)
-        this.getSessionCookie = this.getSessionCookie.bind(this)
+        this.getUserSession = this.getUserSession.bind(this)
     }
 
     componentWillMount() {
