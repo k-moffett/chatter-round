@@ -22,6 +22,7 @@ export default class LandingPage extends Component {
     }
 
     getUserInfo(sessid) {
+        console.log('getUserInfo')
         fetch('/user_session', {
             method: 'POST',
             headers: {
