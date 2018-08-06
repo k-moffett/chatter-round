@@ -18,12 +18,9 @@ export default class HomePage extends Component {
 
     getSessid() {
         let sessid = document.cookie.split('=')
-        console
-        if (sessid != 'sessid') {
-            this.props.history.push('/')
-        } else if (sessid[0] === 'sessid'){
+        if (sessid[0] === 'sessid'){
             this.getUserInfo(sessid[1])
-        } 
+        }
     }
 
     getUserInfo(sessid) {
@@ -40,9 +37,13 @@ export default class HomePage extends Component {
             .then((response) => response.json())
             .then((responseJson) => {
                 console.log(responseJson)
-                this.setState({
-                    userInfo: responseJson
-                })
+                if (responseJson === 'accountDoesNotExist') {
+                    this.props.history.push('/')
+                } else {
+                  this.setState({
+                      userInfo: responseJson
+                  })
+                }
             })
             .catch((error) => {
                 console.error(error);
