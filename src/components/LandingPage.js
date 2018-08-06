@@ -5,7 +5,8 @@ import { Container, Row, Col, Button } from 'reactstrap';
 export default class LandingPage extends Component {
     constructor(props) {
         super(props)
-        this.getUserSession = this.getUserSession.bind(this)
+        this.getSessid = this.getSessid.bind(this)
+        this.getUserInfo = this.getUserInfo.bind(this)
     }
 
     componentWillMount() {
