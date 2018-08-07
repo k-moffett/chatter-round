@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Button } from 'reactstrap';
-import Map from './homePage/googleMap'
+import MapContainer from './homePage/googleMap'
 
 export default class HomePage extends Component {
     constructor(props) {
@@ -64,7 +64,7 @@ export default class HomePage extends Component {
 
             <Row>
                 <Col>
-                  <Map />
+                  <MapContainer />
                 </Col>
             </Row>
 
