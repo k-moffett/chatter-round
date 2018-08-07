@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Button } from 'reactstrap';
+import Map from './homePage/googleMap'
 
 export default class HomePage extends Component {
     constructor(props) {
@@ -54,11 +55,26 @@ export default class HomePage extends Component {
 
     render() {
         return(
-            <Container>
+            <Container className={'homePage'}>
+            <Row>
+                <Col>
                 <h1>Welcome {this.state.userInfo.userName}</h1>
+                </Col>
+            </Row>
+
+            <Row>
+                <Col>
+                  <Map />
+                </Col>
+            </Row>
+
+            <Row>
+                <Col>
                 <Link to='/'>
                     <Button color="primary" >To Landing</Button>
                 </Link>
+                </Col>
+            </Row>
             </Container>
         )
     }

@@ -23,7 +23,7 @@ export default class SignUp extends Component {
         };
         this.handleUserInput = this.handleUserInput.bind(this);
         this.handleSignUp = this.handleSignUp.bind(this);
-    }
+    };
 
     handleUserInput (e) {
         const name = e.target.name;
@@ -129,7 +129,6 @@ export default class SignUp extends Component {
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log('responseJson: ', responseJson);
                 switch(responseJson.response) {
                     case 'emailExists':
                         console.log('An account with that email address already exists.')
