@@ -13,7 +13,7 @@ export default class Map extends Component{
     }
 
     retrieveGoogleAPI() {
-        fetch('`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}&callback=initMap`', {
+        fetch(`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}&callback=initMap`, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
