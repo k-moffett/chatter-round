@@ -14,7 +14,7 @@ export default class Map extends Component{
 
     retrieveGoogleAPI() {
         fetch(`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}&callback=initMap`, {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
