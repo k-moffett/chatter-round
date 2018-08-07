@@ -6,14 +6,18 @@ export default class HomePage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            userInfo: ''
+            userInfo: '',
+            coordinates: ''
         }
         this.getSessid = this.getSessid.bind(this)
         this.getUserInfo = this.getUserInfo.bind(this)
+        this.getCoords = this.getCoords.bind(this)
+        this.convertPosition = this.convertPosition.bind(this)
     }
 
     componentWillMount() {
         this.getSessid()
+        this.getCoords()
     }
 
     getSessid() {
@@ -24,6 +28,30 @@ export default class HomePage extends Component {
             this.props.history.push('/')
         }
     }
+
+    getCoords() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(this.convertPosition);
+        } else { 
+            let position = "Geolocation is not supported by this browser.";
+        }
+    }
+
+    convertPosition(position) {
+        let latitude = position.coords.latitude.toString()
+        let longitude = position.coords.longitude.toString()
+        let coords = [latitude, longitude]
+        let finalCoords = []
+            coords.map((item) => {
+            let decimal = item.indexOf('.')+3
+            finalCoords.push(item.slice(0, decimal))
+            })
+        console.log(finalCoords.toString())
+        console.log('hashed: ', crypto.createHash('sha256').update(`${finalCoords.toString()}`).digest('hex'))
+        this.setState({
+          coordinates: crypto.createHash('sha256').update(`${finalCoords.toString()}`).digest('hex')
+        })
+      }
 
     getUserInfo(sessid) {
         fetch('/get_user', {
