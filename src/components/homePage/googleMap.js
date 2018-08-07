@@ -9,6 +9,11 @@ const googleMapsClient = require('@google/maps').createClient({
 export default class Map extends Component {
     constructor(props) {
         super(props)
+        this.initMap = this.initMap.bind(this)
+    }
+
+    componentWillMount() {
+        this.initMap()
     }
 
     initMap() {
