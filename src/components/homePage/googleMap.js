@@ -18,7 +18,7 @@ export default class Map extends Component {
 
     initMap() {
         let map;
-        map = new googleMapsClient.Map(document.getElementById('map'), {
+        map = new googleMapsClient.maps.Map(document.getElementById('map'), {
             center: {lat: -34.397, lng: 150.644},
             zoom: 8
           });
