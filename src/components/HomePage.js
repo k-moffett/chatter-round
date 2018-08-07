@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Button } from 'reactstrap';
-import MapContainer from './homePage/googleMap'
 
 export default class HomePage extends Component {
     constructor(props) {
@@ -63,8 +62,8 @@ export default class HomePage extends Component {
             </Row>
 
             <Row>
-                <Col>
-                  <MapContainer />
+                <Col id={'all-chats'}>
+                  <h1>All chats will appear here</h1>
                 </Col>
             </Row>
 
