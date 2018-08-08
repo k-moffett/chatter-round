@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Button } from 'reactstrap';
 
+const crypto = require('crypto');
+
 export default class HomePage extends Component {
     constructor(props) {
         super(props)
@@ -33,7 +35,7 @@ export default class HomePage extends Component {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.convertPosition);
         } else { 
-            let position = "Geolocation is not supported by this browser.";
+            alert("Geolocation is not supported by this browser.")
         }
     }
 
