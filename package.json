@@ -17,6 +17,7 @@
     "reactstrap": "^6.3.0"
   },
   "scripts": {
+    "sql": "mysql -h chatterround.crw7awixshbk.us-east-1.rds.amazonaws.com -u scraw -p chatterround",
     "push": "git add -A && git commit -m 'qs' && git push ",
     "restart": "pm2 restart server.js",
     "start": "react-scripts start",

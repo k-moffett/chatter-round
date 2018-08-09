@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Button } from 'reactstrap';
+import { AddChat } from './homepage/index'
 
 const crypto = require('crypto');
 
