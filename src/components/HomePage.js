@@ -20,6 +20,7 @@ export default class HomePage extends Component {
         this.getCoords = this.getCoords.bind(this)
         this.convertPosition = this.convertPosition.bind(this)
         this.getChats = this.getChats.bind(this)
+        this.cleanUpDisplayedChats = this.cleanUpDisplayedChats.bind(this)
     }
 
     componentWillMount() {
@@ -103,21 +104,28 @@ export default class HomePage extends Component {
           })
     }
 
-    // displayChats() {
-    //     const {isLoaded, allChats} = this.state
-    //     if (!isLoaded) {
-    //         return(<div>Finding chatter...</div>)
-    //     } else {
-    //         return(
-    //            <ListGroup key={'all-chats'}>
-    //               {allChats.map((item, index) => {
-    //                 return(<ListGroupItem tag="button" action key={index}>{item}</ListGroupItem>)
-    //                 })
-    //               }
-    //           </ListGroup>
-    //         )
-    //     }   
-    // }
+    displayChats() {
+        const {isLoaded, allChats} = this.state
+        if (!isLoaded) {
+            return(<div>Finding chatter...</div>)
+        } else {
+            return(
+               <ListGroup key={'all-chats'}>
+                  {allChats.map((item, index) => {
+                    return(<ListGroupItem tag="button" action key={index}>{item}</ListGroupItem>)
+                    })
+                  }
+              </ListGroup>
+            )
+        }   
+    }
+
+    cleanUpDisplayedChats() {
+        let hashCoords = this.state.coordinates
+        this.setState({
+            isLoaded: false
+        }, this.getChats(hashCoords))
+    }
 
     render() {
         return(
@@ -128,12 +136,12 @@ export default class HomePage extends Component {
                 </Col>
             </Row>
 
-            <AddChat coordinates={this.state.coordinates} />
+            <AddChat coordinates={this.state.coordinates} cleanUpDisplayedChats={this.cleanUpDisplayedChats} />
 
             <Row>
                 <Col id={'all-chats'}>
-                    {/* {this.displayChats()} */}
-                    <DisplayAllChats isLoaded={this.state.isLoaded} allChats={this.state.allChats} />
+                    {this.displayChats()}
+                    {/* <DisplayAllChats isLoaded={this.state.isLoaded} allChats={this.state.allChats} /> */}
                 </Col>
             </Row>
 
