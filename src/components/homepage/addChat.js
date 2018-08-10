@@ -45,7 +45,7 @@ export default class AddChat extends Component {
                 <Form>
                   <FormGroup>
                     <Label for="newChatName">Add a new Chat Room</Label>
-                    <Input type="text" name="newChatName" value={this.state.AddChat} onChange={this.handleUserInput} placeholder="enter a username" />
+                    <Input type="text" name="newChatName" value={this.state.newChatName} onChange={this.handleUserInput} placeholder="enter a username" />
                   </FormGroup>
                     <Button onClick={(e) => {this.createChat(e)}}>Add Chat</Button>
                 </Form>
