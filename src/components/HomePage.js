@@ -87,7 +87,8 @@ export default class HomePage extends Component {
     }
 
     getChats() {
-        firebase.database().ref(this.state.coordinates.toString()).on('value', function(dataSnapshot) {
+        let chats = this.state.coordinates.toString()
+        firebase.database().ref(chats).on('value', function(dataSnapshot) {
             dataSnapshot.forEach((childNode) => {
               let key = childNode.key
               let allKeys 
