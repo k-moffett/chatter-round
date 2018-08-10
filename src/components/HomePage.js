@@ -24,6 +24,9 @@ export default class HomePage extends Component {
     componentWillMount() {
         this.getSessid()
         this.getCoords()
+    }
+
+    componentDidMount() {
         this.getChats()
     }
 
