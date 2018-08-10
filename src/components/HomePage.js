@@ -113,8 +113,8 @@ export default class HomePage extends Component {
         const {isLoaded, allChats} = this.state
         if (!isLoaded) {
             return(<div>Loading...</div>)
-        } else if (isLoaded === true) {
-            allChats.map((item, index) => {
+        } else {
+            return allChats.map((item, index) => {
                 return(
                 <ListGroup>
                     <ListGroupItem tag="button" action key={index.toString()}>{item}</ListGroupItem>
