@@ -92,6 +92,8 @@ export default class HomePage extends Component {
                 </Col>
             </Row>
 
+            <AddChat coordinates={this.state.coordinates} />
+
             <Row>
                 <Col id={'all-chats'}>
                   <h1>All chats will appear here</h1>
