@@ -32,7 +32,7 @@ export default class AddChat extends Component {
 
     createChat(e) {
         e.preventDefault();
-        firebase.database().ref(this.props.coordinates).set({
+        firebase.database().ref(`${this.props.coordinates}/${this.state.newChatName}`).set({
             messages: '',
             });
     }
