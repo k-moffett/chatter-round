@@ -89,14 +89,14 @@ export default class HomePage extends Component {
     }
 
     getChats(hashCoords) {
+        let allKeys = []
         firebase.database().ref(hashCoords).on('value', function(dataSnapshot) {
             dataSnapshot.forEach((childNode) => {
               let key = childNode.key
-              let allKeys = []
               allKeys.push(key)
-              this.setChats(allKeys)
             })      
-          });
+          })
+          .then((res) => {this.setChats(allKeys)})
     }
 
     setChats(allKeys) {
