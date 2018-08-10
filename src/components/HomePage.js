@@ -12,8 +12,8 @@ export default class HomePage extends Component {
         this.state = {
             userInfo: '',
             coordinates: '',
-            isLoaded: false,
-            allChats: []
+            // isLoaded: false,
+            // allChats: []
         }
         this.getSessid = this.getSessid.bind(this)
         this.getUserInfo = this.getUserInfo.bind(this)
@@ -114,13 +114,15 @@ export default class HomePage extends Component {
         if (!isLoaded) {
             return(<div>Loading...</div>)
         } else {
-            return( 
+            return(
+              <div> 
                <ListGroup>
                   {allChats.map((item, index) => {
                     return(<ListGroupItem tag="button" action key={index.toString()}>{item}</ListGroupItem>)
                     })
                   };
               </ListGroup>
+              </div>
             )
         }   
     }
