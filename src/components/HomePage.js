@@ -100,6 +100,16 @@ export default class HomePage extends Component {
           });
     }
 
+    displayChats() {
+        this.state.allChats.map((item, index) => {
+            return(
+              <ListGroup>
+                <ListGroupItem tag="button" action key={index.toString()}>{item}</ListGroupItem>
+              </ListGroup>
+            )
+        })
+    }
+
     render() {
         return(
             <Container className={'homePage'}>
@@ -113,13 +123,7 @@ export default class HomePage extends Component {
 
             <Row>
                 <Col id={'all-chats'}>
-                  {this.state.allChats.map((item, index) => {
-                      return(
-                        <ListGroup>
-                          <ListGroupItem tag="button" action key={index.toString()}>{item}</ListGroupItem>
-                        </ListGroup>
-                      )
-                  })}
+                    {this.displayChats()}
                 </Col>
             </Row>
 
