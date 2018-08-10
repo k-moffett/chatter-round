@@ -18,7 +18,7 @@ export default class HomePage extends Component {
         this.getUserInfo = this.getUserInfo.bind(this)
         this.getCoords = this.getCoords.bind(this)
         this.convertPosition = this.convertPosition.bind(this)
-        this.getChats = this.getChats.bind(this)
+        this.setChats = this.setChats.bind(this)
     }
 
     componentWillMount() {
@@ -93,11 +93,15 @@ export default class HomePage extends Component {
               let key = childNode.key
               let allKeys = []
               allKeys.push(key)
-              this.setState({
-                allChats: allKeys
-              })
+              this.setChats(allKeys)
             })      
           });
+    }
+
+    setChats(allKeys) {
+        this.setState({
+            allChats: allKeys
+        })
     }
 
     displayChats() {
