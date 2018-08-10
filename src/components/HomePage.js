@@ -12,8 +12,8 @@ export default class HomePage extends Component {
         this.state = {
             userInfo: '',
             coordinates: '',
-            // isLoaded: false,
-            // allChats: []
+            isLoaded: false,
+            allChats: []
         }
         this.getSessid = this.getSessid.bind(this)
         this.getUserInfo = this.getUserInfo.bind(this)
@@ -53,8 +53,6 @@ export default class HomePage extends Component {
             let decimal = item.indexOf('.')+3
             finalCoords.push(item.slice(0, decimal))
             })
-        console.log(finalCoords.toString())
-        console.log('hashed: ', crypto.createHash('sha256').update(`${finalCoords.toString()}`).digest('hex'))
         let hashCoords = crypto.createHash('sha256').update(`${finalCoords.toString()}`).digest('hex')
         this.setState({
           coordinates: hashCoords
@@ -74,7 +72,6 @@ export default class HomePage extends Component {
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson)
                 if (responseJson === 'accountDoesNotExist') {
                     this.props.history.push('/')
                 } else {
@@ -100,10 +97,8 @@ export default class HomePage extends Component {
         firebase.database().ref(hashCoords).on('value', function(dataSnapshot) {
             dataSnapshot.forEach((childNode) => {
               let key = childNode.key
-              console.log('KEYS',key)
               allKeys.push(key)
             }) 
-            console.log('ALLKEYS', allKeys)     
             setChats(allKeys)
           })
     }
@@ -117,7 +112,7 @@ export default class HomePage extends Component {
               <div> 
                <ListGroup>
                   {allChats.map((item, index) => {
-                    return(<ListGroupItem tag="button" action key={index.toString()}>{item}</ListGroupItem>)
+                    return(<ListGroupItem tag="button" action key={index}>{item}</ListGroupItem>)
                     })
                   }
               </ListGroup>
