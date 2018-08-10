@@ -114,13 +114,14 @@ export default class HomePage extends Component {
         if (!isLoaded) {
             return(<div>Loading...</div>)
         } else {
-            return allChats.map((item, index) => {
-                return(
-                <ListGroup>
-                    <ListGroupItem tag="button" action key={index.toString()}>{item}</ListGroupItem>
-                </ListGroup>
-                )
-            })
+            return( 
+               <ListGroup>
+                  {allChats.map((item, index) => {
+                    return(<ListGroupItem tag="button" action key={index.toString()}>{item}</ListGroupItem>)
+                    })
+                  };
+              </ListGroup>
+            )
         }   
     }
 
