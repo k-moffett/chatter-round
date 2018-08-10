@@ -54,9 +54,10 @@ export default class HomePage extends Component {
             })
         console.log(finalCoords.toString())
         console.log('hashed: ', crypto.createHash('sha256').update(`${finalCoords.toString()}`).digest('hex'))
+        let hashCoords = crypto.createHash('sha256').update(`${finalCoords.toString()}`).digest('hex')
         this.setState({
-          coordinates: crypto.createHash('sha256').update(`${finalCoords.toString()}`).digest('hex')
-        }, this.getChats())
+          coordinates: hashCoords
+        }, this.getChats(hashCoords))
       }
 
     getUserInfo(sessid) {
@@ -86,10 +87,8 @@ export default class HomePage extends Component {
             });
     }
 
-    getChats() {
-        let chats = this.state.coordinates.toString()
-        console.log('CHATS', chats)
-        firebase.database().ref(chats).on('value', function(dataSnapshot) {
+    getChats(hashCoords) {
+        firebase.database().ref(hashCoords).on('value', function(dataSnapshot) {
             dataSnapshot.forEach((childNode) => {
               let key = childNode.key
               let allKeys 
