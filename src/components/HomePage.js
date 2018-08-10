@@ -19,7 +19,6 @@ export default class HomePage extends Component {
         this.getCoords = this.getCoords.bind(this)
         this.convertPosition = this.convertPosition.bind(this)
         this.getChats = this.getChats.bind(this)
-        this.setChats = this.setChats.bind(this)
     }
 
     componentWillMount() {
