@@ -17,9 +17,9 @@ firebase.initializeApp(config);
 export default class AddChat extends Component {
     constructor(props) {
         super(props)
-        this.state({
+        this.state = ({
             newChatName: ''
-        })
+        });
         this.handleUserInput = this.handleUserInput.bind(this)
         this.createChat = this.createChat.bind(this)
     }
@@ -31,10 +31,10 @@ export default class AddChat extends Component {
     };
 
     createChat(e) {
-        e.preventDefault()
+        e.preventDefault();
         firebase.database().ref(this.props.coordinates).set({
             messages: '',
-            })
+            });
     }
 
 
@@ -45,7 +45,7 @@ export default class AddChat extends Component {
                 <Form>
                   <FormGroup>
                     <Label for="newChatName">Add a new Chat Room</Label>
-                    <Input type="text" name="newChatName" value={this.state.newChatName} onChange={this.handleUserInput} placeholder="enter a username" />
+                    <Input type="text" name="newChatName" value={this.state.newChatName} onChange={this.handleUserInput} placeholder="enter a chat room name" />
                   </FormGroup>
                     <Button onClick={(e) => {this.createChat(e)}}>Add Chat</Button>
                 </Form>
