@@ -95,8 +95,7 @@ export default class HomePage extends Component {
             this.setState({
                 allChats: allKeys,
                 isLoaded: true
-            }, 
-            this.displayChats(allKeys))}
+            })}
 
         firebase.database().ref(hashCoords).on('value', function(dataSnapshot) {
             dataSnapshot.forEach((childNode) => {
