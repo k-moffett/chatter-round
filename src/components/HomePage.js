@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import { Container, Row, Col, Button } from 'reactstrap';
+import { Container, Row, Col, Button, ListGroup, ListGroupItem } from 'reactstrap';
 import { AddChat } from './homepage/index'
 
+const firebase = require('firebase')
 const crypto = require('crypto');
 
 export default class HomePage extends Component {
@@ -16,11 +17,16 @@ export default class HomePage extends Component {
         this.getUserInfo = this.getUserInfo.bind(this)
         this.getCoords = this.getCoords.bind(this)
         this.convertPosition = this.convertPosition.bind(this)
+        this.getChats = this.getChats.bind(this)
     }
 
     componentWillMount() {
         this.getSessid()
         this.getCoords()
+    }
+
+    componentDidMount() {
+        this.getChats()
     }
 
     getSessid() {
@@ -83,6 +89,20 @@ export default class HomePage extends Component {
             });
     }
 
+    getChats() {
+        firebase.database().ref(this.state.coordinates).on('value', function(dataSnapshot) {
+            dataSnapshot.forEach((childNode) => {
+              let key = childNode.key
+              console.log(key)
+              return(
+                <ListGroup>
+                  <ListGroupItem tag="button" action>{key}</ListGroupItem>
+                </ListGroup>
+              )
+            })      
+          });
+    }
+
     render() {
         return(
             <Container className={'homePage'}>
@@ -96,7 +116,7 @@ export default class HomePage extends Component {
 
             <Row>
                 <Col id={'all-chats'}>
-                  <h1>All chats will appear here</h1>
+                  {this.getChats()}
                 </Col>
             </Row>
 
