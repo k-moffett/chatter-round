@@ -26,10 +26,6 @@ export default class HomePage extends Component {
         this.getCoords()
     }
 
-    componentDidMount() {
-        this.getChats()
-    }
-
     getSessid() {
         let sessid = document.cookie.split('=')
         if (sessid[0] === 'sessid'){
@@ -60,7 +56,7 @@ export default class HomePage extends Component {
         console.log('hashed: ', crypto.createHash('sha256').update(`${finalCoords.toString()}`).digest('hex'))
         this.setState({
           coordinates: crypto.createHash('sha256').update(`${finalCoords.toString()}`).digest('hex')
-        })
+        }, this.getChats())
       }
 
     getUserInfo(sessid) {
