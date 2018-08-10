@@ -11,7 +11,8 @@ export default class HomePage extends Component {
         super(props)
         this.state = {
             userInfo: '',
-            coordinates: ''
+            coordinates: '',
+            allChats: []
         }
         this.getSessid = this.getSessid.bind(this)
         this.getUserInfo = this.getUserInfo.bind(this)
@@ -23,9 +24,6 @@ export default class HomePage extends Component {
     componentWillMount() {
         this.getSessid()
         this.getCoords()
-    }
-
-    componentDidMount() {
         this.getChats()
     }
 
@@ -93,12 +91,11 @@ export default class HomePage extends Component {
         firebase.database().ref(`${this.state.coordinates}`).on('value', function(dataSnapshot) {
             dataSnapshot.forEach((childNode) => {
               let key = childNode.key
-              console.log(key)
-              return(
-                <ListGroup>
-                  <ListGroupItem tag="button" action>{key}</ListGroupItem>
-                </ListGroup>
-              )
+              let allKeys 
+              allKeys.push(key)
+              this.setState({
+                allChats: allKeys
+              })
             })      
           });
     }
@@ -116,7 +113,13 @@ export default class HomePage extends Component {
 
             <Row>
                 <Col id={'all-chats'}>
-                  {this.getChats()}
+                  {this.state.allChats.map((item, index) => {
+                      return(
+                        <ListGroup>
+                          <ListGroupItem tag="button" action key={index.toString()}>{item}</ListGroupItem>
+                        </ListGroup>
+                      )
+                  })}
                 </Col>
             </Row>
 
