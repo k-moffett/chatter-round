@@ -106,17 +106,15 @@ export default class HomePage extends Component {
     displayChats() {
         const {isLoaded, allChats} = this.state
         if (!isLoaded) {
-            return(<div>Finding chatter around you...</div>)
+            return(<div>Finding chatter...</div>)
         } else {
             return(
-              <div> 
-               <ListGroup>
+               <ListGroup key={'all-chats'}>
                   {allChats.map((item, index) => {
                     return(<ListGroupItem tag="button" action key={index}>{item}</ListGroupItem>)
                     })
                   }
               </ListGroup>
-              </div>
             )
         }   
     }
