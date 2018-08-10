@@ -93,10 +93,11 @@ export default class HomePage extends Component {
         firebase.database().ref(hashCoords).on('value', function(dataSnapshot) {
             dataSnapshot.forEach((childNode) => {
               let key = childNode.key
+              console.log('KEYS',key)
               allKeys.push(key)
             })      
+            this.setChats(allKeys)
           })
-          .then((res) => {this.setChats(allKeys)})
     }
 
     setChats(allKeys) {
