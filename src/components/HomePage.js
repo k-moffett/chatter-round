@@ -95,7 +95,8 @@ export default class HomePage extends Component {
               let key = childNode.key
               console.log('KEYS',key)
               allKeys.push(key)
-            })      
+            }) 
+            console.log('ALLKEYS', allKeys)     
             this.setChats(allKeys)
           })
     }
