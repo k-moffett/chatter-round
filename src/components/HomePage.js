@@ -124,7 +124,7 @@ export default class HomePage extends Component {
 
             <Row>
                 <Col id={'all-chats'}>
-                    {this.displayChats()}
+                    {this.displayChats}
                 </Col>
             </Row>
 
