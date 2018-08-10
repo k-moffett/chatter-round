@@ -12,6 +12,7 @@ export default class HomePage extends Component {
         this.state = {
             userInfo: '',
             coordinates: '',
+            isLoaded: false,
             allChats: []
         }
         this.getSessid = this.getSessid.bind(this)
@@ -89,7 +90,14 @@ export default class HomePage extends Component {
 
     getChats(hashCoords) {
         let allKeys = []
-        const setChats = () => {this.setState({allChats: allKeys})}
+
+        const setChats = () => {
+            this.setState({
+                allChats: allKeys,
+                isLoaded: true
+            }, 
+            this.displayChats(allKeys))}
+
         firebase.database().ref(hashCoords).on('value', function(dataSnapshot) {
             dataSnapshot.forEach((childNode) => {
               let key = childNode.key
@@ -102,13 +110,18 @@ export default class HomePage extends Component {
     }
 
     displayChats() {
-        this.state.allChats.map((item, index) => {
-            return(
-              <ListGroup>
-                <ListGroupItem tag="button" action key={index.toString()}>{item}</ListGroupItem>
-              </ListGroup>
-            )
-        })
+        const {isLoaded, allChats} = this.state
+        if (!isLoaded) {
+            return(<div>Loading...</div>)
+        } else if (isLoaded === true) {
+            allChats.map((item, index) => {
+                return(
+                <ListGroup>
+                    <ListGroupItem tag="button" action key={index.toString()}>{item}</ListGroupItem>
+                </ListGroup>
+                )
+            })
+        }   
     }
 
     render() {
