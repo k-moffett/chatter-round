@@ -106,6 +106,7 @@ export default class HomePage extends Component {
 
     displayChats() {
         const {isLoaded, allChats} = this.state
+        React.unmountComponentAtNode(this)
         if (!isLoaded) {
             return(<div>Finding chatter...</div>)
         } else {
@@ -120,13 +121,6 @@ export default class HomePage extends Component {
         }   
     }
 
-    cleanUpDisplayedChats() {
-        let hashCoords = this.state.coordinates
-        this.setState({
-            isLoaded: false
-        }, this.getChats(hashCoords))
-    }
-
     render() {
         return(
             <Container className={'homePage'}>
@@ -136,7 +130,7 @@ export default class HomePage extends Component {
                 </Col>
             </Row>
 
-            <AddChat coordinates={this.state.coordinates} cleanUpDisplayedChats={this.cleanUpDisplayedChats} />
+            <AddChat coordinates={this.state.coordinates} />
 
             <Row>
                 <Col id={'all-chats'}>
