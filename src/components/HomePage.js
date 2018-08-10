@@ -111,7 +111,7 @@ export default class HomePage extends Component {
     displayChats() {
         const {isLoaded, allChats} = this.state
         if (!isLoaded) {
-            return(<div>Loading...</div>)
+            return(<div>Finding chatter around you...</div>)
         } else {
             return(
               <div> 
@@ -119,7 +119,7 @@ export default class HomePage extends Component {
                   {allChats.map((item, index) => {
                     return(<ListGroupItem tag="button" action key={index.toString()}>{item}</ListGroupItem>)
                     })
-                  };
+                  }
               </ListGroup>
               </div>
             )
