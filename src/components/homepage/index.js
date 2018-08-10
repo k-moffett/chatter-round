@@ -1,5 +1,7 @@
 import AddChat from './addChat'
+import DisplayAllChats from './displayAllChats';
 
 export {
-    AddChat
+    AddChat,
+    DisplayAllChats
 }

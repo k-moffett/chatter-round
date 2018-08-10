@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Button, ListGroup, ListGroupItem } from 'reactstrap';
-import { AddChat } from './homepage/index'
+import { AddChat, DisplayAllChats } from './homepage/index'
 
 const firebase = require('firebase')
 const crypto = require('crypto');
@@ -103,21 +103,21 @@ export default class HomePage extends Component {
           })
     }
 
-    displayChats() {
-        const {isLoaded, allChats} = this.state
-        if (!isLoaded) {
-            return(<div>Finding chatter...</div>)
-        } else {
-            return(
-               <ul key={'all-chats'}>
-                  {allChats.map((item, index) => {
-                    return(<li tag="button" action key={index}>{item}</li>)
-                    })
-                  }
-              </ul>
-            )
-        }   
-    }
+    // displayChats() {
+    //     const {isLoaded, allChats} = this.state
+    //     if (!isLoaded) {
+    //         return(<div>Finding chatter...</div>)
+    //     } else {
+    //         return(
+    //            <ListGroup key={'all-chats'}>
+    //               {allChats.map((item, index) => {
+    //                 return(<ListGroupItem tag="button" action key={index}>{item}</ListGroupItem>)
+    //                 })
+    //               }
+    //           </ListGroup>
+    //         )
+    //     }   
+    // }
 
     render() {
         return(
@@ -132,7 +132,8 @@ export default class HomePage extends Component {
 
             <Row>
                 <Col id={'all-chats'}>
-                    {this.displayChats()}
+                    {/* {this.displayChats()} */}
+                    <DisplayAllChats isLoaded={this.state.isLoaded} allChats={this.state.allChats} />
                 </Col>
             </Row>
 
