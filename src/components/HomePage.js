@@ -90,6 +90,7 @@ export default class HomePage extends Component {
 
     getChats(hashCoords) {
         let allKeys = []
+        const setChats = () => {this.setState({allChats: allKeys})}
         firebase.database().ref(hashCoords).on('value', function(dataSnapshot) {
             dataSnapshot.forEach((childNode) => {
               let key = childNode.key
@@ -97,14 +98,8 @@ export default class HomePage extends Component {
               allKeys.push(key)
             }) 
             console.log('ALLKEYS', allKeys)     
-            this.setChats(allKeys)
+            setChats(allKeys)
           })
-    }
-
-    setChats(allKeys) {
-        this.setState({
-            allChats: allKeys
-        })
     }
 
     displayChats() {
