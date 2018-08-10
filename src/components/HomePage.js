@@ -109,12 +109,12 @@ export default class HomePage extends Component {
             return(<div>Finding chatter...</div>)
         } else {
             return(
-               <ListGroup key={'all-chats'}>
+               <ul key={'all-chats'}>
                   {allChats.map((item, index) => {
-                    return(<ListGroupItem tag="button" action key={index}>{item}</ListGroupItem>)
+                    return(<li tag="button" action key={index}>{item}</li>)
                     })
                   }
-              </ListGroup>
+              </ul>
             )
         }   
     }
