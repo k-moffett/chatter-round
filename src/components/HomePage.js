@@ -20,6 +20,8 @@ export default class HomePage extends Component {
         this.getCoords = this.getCoords.bind(this)
         this.convertPosition = this.convertPosition.bind(this)
         this.getChats = this.getChats.bind(this)
+
+        this.allChat = React.createRef();
     }
 
     componentWillMount() {
@@ -128,7 +130,7 @@ export default class HomePage extends Component {
                 </Col>
             </Row>
 
-            <AddChat coordinates={this.state.coordinates} />
+            <AddChat coordinates={this.state.coordinates}  ref={this.allChats} />
 
             <Row>
                 <Col id={'all-chats'}>
