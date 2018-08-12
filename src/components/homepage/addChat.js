@@ -32,7 +32,6 @@ export default class AddChat extends Component {
 
     createChat(e) {
         e.preventDefault();
-        this.props.cleanUpchats()
         firebase.database().ref(`${this.props.coordinates}/${this.state.newChatName}`).set({
             messages: '',
             });
@@ -48,7 +47,7 @@ export default class AddChat extends Component {
                     <Label for="newChatName">Add a new Chat Room</Label>
                     <Input type="text" name="newChatName" value={this.state.newChatName} onChange={this.handleUserInput} placeholder="enter a chat room name" />
                   </FormGroup>
-                    <Button onClick={(e) => {this.createChat(e)}}>Add Chat</Button>
+                    <Button onClick={(e) => {this.props.cleanUpchats(), this.createChat(e)}}>Add Chat</Button>
                 </Form>
                 </Col>
             </Row>
