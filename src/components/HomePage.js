@@ -20,8 +20,7 @@ export default class HomePage extends Component {
         this.getCoords = this.getCoords.bind(this)
         this.convertPosition = this.convertPosition.bind(this)
         this.getChats = this.getChats.bind(this)
-
-        this.allChat = React.createRef();
+        this.cleanUpChats = this.cleanUpChats.bind(this)
     }
 
     componentWillMount() {
@@ -121,6 +120,12 @@ export default class HomePage extends Component {
         }   
     }
 
+    cleanUpChats() {
+        this.setState({
+            isLoaded: false
+        })
+    }
+
     render() {
         return(
             <Container className={'homePage'}>
@@ -130,7 +135,7 @@ export default class HomePage extends Component {
                 </Col>
             </Row>
 
-            <AddChat coordinates={this.state.coordinates}  ref={this.allChats} />
+            <AddChat coordinates={this.state.coordinates} cleanUpChats={this.cleanUpChats} />
 
             <Row>
                 <Col id={'all-chats'}>
