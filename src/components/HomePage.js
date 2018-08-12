@@ -105,12 +105,11 @@ export default class HomePage extends Component {
 
     displayChats() {
         const {isLoaded, allChats} = this.state
-        React.unmountComponentAtNode(this)
         if (!isLoaded) {
             return(<div>Finding chatter...</div>)
         } else {
             return(
-               <ListGroup key={'all-chats'}>
+               <ListGroup ref={'all-chats'}>
                   {allChats.map((item, index) => {
                     return(<ListGroupItem tag="button" action key={index}>{item}</ListGroupItem>)
                     })
