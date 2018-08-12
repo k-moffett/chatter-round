@@ -32,7 +32,7 @@ export default class AddChat extends Component {
 
     createChat(e) {
         e.preventDefault();
-        let mountNode = React.findDOMNode(this.refs.all-chats);
+        let mountNode = React.findDOMNode(this.refs.allChats);
         React.unmountComponentAtNode(mountNode);
         firebase.database().ref(`${this.props.coordinates}/${this.state.newChatName}`).set({
             messages: '',

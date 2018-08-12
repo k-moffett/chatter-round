@@ -23,7 +23,7 @@ export default class DisplayAllChats extends Component {
             return(<div>Finding chatter...</div>)
         } else {
             return(
-               <ListGroup key={'all-chats'}>
+               <ListGroup ref={'allChats'}>
                   {allChats.map((item, index) => {
                     return(<ListGroupItem tag="button" action key={index}>{item}</ListGroupItem>)
                     })
