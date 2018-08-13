@@ -20,6 +20,7 @@ export default class HomePage extends Component {
         this.getCoords = this.getCoords.bind(this)
         this.convertPosition = this.convertPosition.bind(this)
         this.getChats = this.getChats.bind(this)
+        this.cleanUpChats = this.cleanUpChats.bind(this)
     }
 
     componentWillMount() {
@@ -105,7 +106,6 @@ export default class HomePage extends Component {
 
     displayChats() {
         const {isLoaded, allChats} = this.state
-        this.forceUpdate()
         if (isLoaded === false) {
             return(<div>Finding chatter...</div>)
         } else {
@@ -118,6 +118,13 @@ export default class HomePage extends Component {
               </ListGroup>
             )
         }   
+    }
+
+    cleanUpChats() {
+        console.log('BEFORE',this.state)
+        this.setState({
+            isLoaded: false
+        }, console.log('AFTER', this.state))
     }
 
     render() {
@@ -133,8 +140,8 @@ export default class HomePage extends Component {
 
             <Row>
                 <Col id={'all-chats'}>
-                    {this.displayChats()}
-                    {/* <DisplayAllChats isLoaded={this.state.isLoaded} allChats={this.state.allChats} /> */}
+                    {/* {this.displayChats()} */}
+                    <DisplayAllChats isLoaded={this.state.isLoaded} allChats={this.state.allChats} />
                 </Col>
             </Row>
 

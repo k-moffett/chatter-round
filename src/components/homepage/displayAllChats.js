@@ -11,7 +11,7 @@ export default class DisplayAllChats extends Component {
         let isLoaded = this.props.isLoaded
         let allChats = this.props.allChats
 
-        if (!isLoaded) {
+        if (isLoaded === false) {
             return(<div>Finding chatter...</div>)
         } else {
             return(
