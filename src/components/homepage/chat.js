@@ -12,6 +12,7 @@ export default class Chat extends Component {
         }
         this.sendMessage = this.sendMessage.bind(this)
         this.handleUserInput = this.handleUserInput.bind(this)
+        this.getConversation = this.getConversation.bind(this)
         this.displayConversation = this.displayConversation.bind(this)
     }
 
@@ -25,15 +26,39 @@ export default class Chat extends Component {
         this.setState({[name]: value});
     }
 
-    displayConversation() {
+    getConversation() {
         let { coordinates, currentChat } = this.props.state
+        let conversation = []
 
         firebase.database().ref(`${coordinates}/${currentChat}`).on('value', function(dataSnapshot) {
+            conversation = []
+
             dataSnapshot.forEach((childNode) => {
                 console.log(childNode.val())
-
+                let message = {
+                    user: childNode.val().userName,
+                    message: childNode.val().message,
+                    timeSent: childNode.val().timeSent
+                }
+                conversation.push(message)
               })
+              this.displayConversation(conversation)
           })
+    }
+
+    displayConversation(conversation) {
+        console.log(conversation)
+        let chatDiv = <div id='mainChat' />
+        
+            {conversation.map((item) => {
+                chatDiv.append(
+                  <div>  
+                    <Col xs='3' id={'username'}>{item.user}</Col> 
+                    <Col xs='9'>{item.message}</Col>
+                  </div>
+                    )
+                })}
+        return chatDiv
     }
 
     sendMessage(e) {
@@ -53,24 +78,22 @@ export default class Chat extends Component {
             <Container>
 
                 <Row className={'userChatDisplay'}>
+                    {this.displayConversation()}
                 </Row>
 
                 <Row className={'userInput'}>
-                </Row>
-
                     <Col xs='2'>
-                      <Button onClick={(e) => {this.sendMessage(e)}}>Send</Button>
+                        <Button onClick={(e) => {this.sendMessage(e)}}>Send</Button>
                     </Col>
 
                     <Col xs='10'>
-                    <Form>
-                        <FormGroup>
-                            <Input type="text" name="userInput" value={this.state.userInput} onChange={this.handleUserInput} placeholder="say something..." />
-                        </FormGroup>
-                    </Form>
+                        <Form>
+                            <FormGroup>
+                                <Input type="text" name="userInput" value={this.state.userInput} onChange={this.handleUserInput} placeholder="say something..." />
+                            </FormGroup>
+                        </Form>
                     </Col>
-
-
+                </Row>
 
                 <Row>
                   <Button onClick={(e) => {this.props.exitChat()}} color="primary" >Leave Chat</Button>
