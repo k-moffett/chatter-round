@@ -12,18 +12,25 @@ export default class Chat extends Component {
         }
         this.sendMessage = this.sendMessage.bind(this)
         this.handleUserInput = this.handleUserInput.bind(this)
+        this.displayConversation = this.displayConversation.bind(this)
     }
 
     componentDidMount() {
-        let { currentChat, userInfo } = this.props.state
-        console.log(currentChat)
-        console.log(userInfo)
+        this.displayConversation()
     }
 
     handleUserInput (e) {
         const name = e.target.name;
         const value = e.target.value;
         this.setState({[name]: value});
+    }
+
+    displayConversation() {
+        let { coordinates, currentChat } = this.props.state
+
+        firebase.database().ref(`${coordinates}/${currentChat}`).on('value', function(dataSnapshot) {
+          console.log(dataSnapshot)
+          })
     }
 
     sendMessage(e) {
@@ -49,7 +56,7 @@ export default class Chat extends Component {
                 </Row>
 
                     <Col xs='2'>
-                      <Button onClick={(e) => {this.sendMessage(e)}}>Log In</Button>
+                      <Button onClick={(e) => {this.sendMessage(e)}}>Send</Button>
                     </Col>
 
                     <Col xs='10'>
