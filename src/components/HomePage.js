@@ -106,7 +106,7 @@ export default class HomePage extends Component {
 
     displayChats() {
         const {isLoaded, allChats} = this.state
-        if (!isLoaded) {
+        if (isLoaded === false) {
             return(<div>Finding chatter...</div>)
         } else {
             return(
