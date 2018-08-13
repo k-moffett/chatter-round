@@ -81,7 +81,7 @@ export default class Chat extends Component {
             <Container>
 
                 <Row className={'userChatDisplay'}>
-                    {this.displayConversation()}
+                    {/* {this.displayConversation()} */}
                 </Row>
 
                 <Row className={'userInput'}>
