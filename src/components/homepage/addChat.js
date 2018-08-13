@@ -32,7 +32,6 @@ export default class AddChat extends Component {
 
     createChat(e) {
         e.preventDefault();
-        this.props.cleanUpChats()
         firebase.database().ref(`${this.props.coordinates}/${this.state.newChatName}`).set({
             messages: '',
             });

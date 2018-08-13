@@ -13,15 +13,13 @@ export default class HomePage extends Component {
             userInfo: '',
             coordinates: '',
             isLoaded: false,
-            allChats: [],
-            allKeys: []
+            allChats: []
         }
         this.getSessid = this.getSessid.bind(this)
         this.getUserInfo = this.getUserInfo.bind(this)
         this.getCoords = this.getCoords.bind(this)
         this.convertPosition = this.convertPosition.bind(this)
         this.getChats = this.getChats.bind(this)
-        this.cleanUpChats = this.cleanUpChats.bind(this)
     }
 
     componentWillMount() {
@@ -89,7 +87,7 @@ export default class HomePage extends Component {
 
     getChats(hashCoords) {
         console.log('GET CHATS')
-        let allKeys = this.state.allKeys
+        let allKeys = []
 
         const setChats = (allKeys) => {
             console.log('SET CHATS')
@@ -100,6 +98,8 @@ export default class HomePage extends Component {
             })}
 
         firebase.database().ref(hashCoords).on('value', function(dataSnapshot) {
+            allKeys = []
+            
             dataSnapshot.forEach((childNode) => {
               let key = childNode.key
               allKeys.push(key)
@@ -124,13 +124,6 @@ export default class HomePage extends Component {
         }   
     }
 
-    cleanUpChats() {
-        console.log('BEFORE',this.state)
-        this.setState({
-            isLoaded: false
-        }, console.log('AFTER', this.state))
-    }
-
     render() {
         return(
             <Container className={'homePage'}>
@@ -140,12 +133,12 @@ export default class HomePage extends Component {
                 </Col>
             </Row>
 
-            <AddChat coordinates={this.state.coordinates} cleanUpChats={this.cleanUpChats} />
+            <AddChat coordinates={this.state.coordinates} />
 
             <Row>
                 <Col id={'all-chats'}>
-                    {/* {this.displayChats()} */}
-                    <DisplayAllChats isLoaded={this.state.isLoaded} allChats={this.state.allChats} />
+                    {this.displayChats()}
+                    {/* <DisplayAllChats isLoaded={this.state.isLoaded} allChats={this.state.allChats} /> */}
                 </Col>
             </Row>
 
