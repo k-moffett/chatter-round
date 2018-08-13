@@ -20,7 +20,6 @@ export default class HomePage extends Component {
         this.getCoords = this.getCoords.bind(this)
         this.convertPosition = this.convertPosition.bind(this)
         this.getChats = this.getChats.bind(this)
-        this.cleanUpChats = this.cleanUpChats.bind(this)
     }
 
     componentWillMount() {
@@ -29,10 +28,10 @@ export default class HomePage extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if (this.state.allChats !== nextState.allChats) {
-          return true;
+        if (this.state.allChats === nextState.allChats) {
+          return false;
         }
-        return false;
+        return true;
       }
 
     getSessid() {
@@ -125,12 +124,6 @@ export default class HomePage extends Component {
               </ListGroup>
             )
         }   
-    }
-
-    cleanUpChats() {
-        this.setState({
-            isLoaded: false
-        })
     }
 
     render() {
