@@ -11,6 +11,7 @@ export default class Chat extends Component {
             userInput: '',
         }
         this.sendMessage = this.sendMessage.bind(this)
+        this.handleUserInput = this.handleUserInput.bind(this)
     }
 
     componentDidMount() {
@@ -26,9 +27,11 @@ export default class Chat extends Component {
     }
 
     sendMessage(e) {
+        let { coordinates, currentChat, userInfo } = this.props.state
+
         e.preventDefault()
-        firebase.database().ref().child(`${this.props.coordinates}/${this.props.currentChat}`).push({
-            userName: '',
+        firebase.database().ref().child(`${coordinates}/${currentChat}`).push({
+            userName: userInfo.userName,
             timeSent: [moment().format('YYYY-MM-DD'), moment().format("HH:mm")],
             message: this.state.userInput
         });
