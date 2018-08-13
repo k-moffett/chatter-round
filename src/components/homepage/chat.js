@@ -35,14 +35,17 @@ export default class Chat extends Component {
 
             dataSnapshot.forEach((childNode) => {
                 console.log(childNode.val())
+                console.log(childNode.val().userName)
                 let message = {
                     user: childNode.val().userName,
                     message: childNode.val().message,
                     timeSent: childNode.val().timeSent
                 }
+                console.log('message:', message)
                 conversation.push(message)
               })
-              this.displayConversation(conversation)
+            //   this.displayConversation(conversation)
+            console.log(conversation)
           })
     }
 
