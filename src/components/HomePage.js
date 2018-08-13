@@ -29,7 +29,7 @@ export default class HomePage extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if (this.state.allChats !== nextState.state.allChats) {
+        if (this.state.allChats !== nextState.allChats) {
           return true;
         }
         return false;
