@@ -13,7 +13,8 @@ export default class HomePage extends Component {
             userInfo: '',
             coordinates: '',
             isLoaded: false,
-            allChats: []
+            allChats: [],
+            allKeys: []
         }
         this.getSessid = this.getSessid.bind(this)
         this.getUserInfo = this.getUserInfo.bind(this)
@@ -88,14 +89,7 @@ export default class HomePage extends Component {
 
     getChats(hashCoords) {
         console.log('GET CHATS')
-        let allKeys = []
-
-        const clearChats = (allKeys) => {
-            console.log('CLEAR CHATS')
-            this.setState({
-                allChats: []
-            }, setChats(allKeys))
-        }
+        let allKeys = this.state.allKeys
 
         const setChats = (allKeys) => {
             console.log('SET CHATS')
@@ -110,7 +104,7 @@ export default class HomePage extends Component {
               let key = childNode.key
               allKeys.push(key)
             }) 
-            clearChats(allKeys)
+            setChats(allKeys)
           })
     }
 
