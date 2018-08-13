@@ -28,6 +28,13 @@ export default class HomePage extends Component {
         this.getCoords()
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        if (this.state.allChats !== nextState.state.allChats) {
+          return true;
+        }
+        return false;
+      }
+
     getSessid() {
         let sessid = document.cookie.split('=')
         if (sessid[0] === 'sessid'){
