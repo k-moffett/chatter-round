@@ -30,7 +30,7 @@ export default class Chat extends Component {
 
         firebase.database().ref(`${coordinates}/${currentChat}`).on('value', function(dataSnapshot) {
             dataSnapshot.forEach((childNode) => {
-                console.log(childNode)
+                console.log(childNode.val())
 
               })
           })
