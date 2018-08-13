@@ -29,7 +29,14 @@ export default class Chat extends Component {
         let { coordinates, currentChat } = this.props.state
 
         firebase.database().ref(`${coordinates}/${currentChat}`).on('value', function(dataSnapshot) {
-          console.log(dataSnapshot.val())
+            dataSnapshot.forEach((childNode) => {
+                let user = childNode.userName
+                let message = childNode.message
+                let timeSent = childNode.timeSent
+                console.log(user)
+                console.log(message)
+                console.log(timeSent)
+              })
           })
     }
 
