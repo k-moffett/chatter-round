@@ -23,7 +23,7 @@ export default class Chat extends Component {
     handleUserInput (e) {
         const name = e.target.name;
         const value = e.target.value;
-        this.setState({[name]: value}, () => { this.validateField(name)});
+        this.setState({[name]: value});
     }
 
     sendMessage(e) {
