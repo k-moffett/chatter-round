@@ -94,9 +94,6 @@ export default class Chat extends Component {
                 </Row>
 
                 <Row className={'userInput'}>
-                    <Col xs='2'>
-                        <Button onClick={(e) => {this.sendMessage(e)}}>Send</Button>
-                    </Col>
 
                     <Col xs='10'>
                         <Form>
@@ -105,6 +102,11 @@ export default class Chat extends Component {
                             </FormGroup>
                         </Form>
                     </Col>
+
+                    <Col xs='2'>
+                        <Button onClick={(e) => {this.sendMessage(e)}}>Send</Button>
+                    </Col>
+
                 </Row>
 
                 <Row>
