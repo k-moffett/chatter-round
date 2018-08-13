@@ -89,9 +89,13 @@ export default class HomePage extends Component {
     getChats(hashCoords) {
         let allKeys = []
 
-        this.setState({allChats: []})
+        const clearChats = (allKeys) => {
+            this.setState({
+                allChats: []
+            }, setChats(allKeys))
+        }
 
-        const setChats = () => {
+        const setChats = (allKeys) => {
             this.setState({
                 allChats: allKeys,
                 isLoaded: true
@@ -102,7 +106,7 @@ export default class HomePage extends Component {
               let key = childNode.key
               allKeys.push(key)
             }) 
-            setChats(allKeys)
+            clearChats(allKeys)
           })
     }
 
