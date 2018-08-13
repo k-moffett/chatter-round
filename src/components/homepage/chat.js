@@ -61,13 +61,15 @@ export default class Chat extends Component {
         } else {
             return(
                 <ul>
-                    {conversation.map((item) => {
-                        return(
-                        <li>  
-                            {item.user}: {item.message}
-                        </li>
-                            )
-                        })}
+                    {conversation.map((item, index) => {
+                        if (index > 0) {
+                            return(
+                            <li>  
+                                {item.user}: {item.message}
+                            </li>
+                            )}
+                        })
+                    }
                 </ul>
             )
         }
