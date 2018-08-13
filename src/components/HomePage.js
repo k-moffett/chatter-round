@@ -27,13 +27,6 @@ export default class HomePage extends Component {
         this.getCoords()
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        if (this.state.allChats === nextState.allChats) {
-          return false;
-        }
-        return true;
-      }
-
     getSessid() {
         let sessid = document.cookie.split('=')
         if (sessid[0] === 'sessid'){
@@ -112,6 +105,7 @@ export default class HomePage extends Component {
 
     displayChats() {
         const {isLoaded, allChats} = this.state
+        this.forceUpdate()
         if (isLoaded === false) {
             return(<div>Finding chatter...</div>)
         } else {

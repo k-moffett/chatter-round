@@ -7,14 +7,6 @@ export default class DisplayAllChats extends Component {
         super(props)
     }
 
-    componentDidMount() {
-        console.log('mounted')
-    }
-
-    componentWillUnmount() {
-        console.log('unmount')
-    }
-
     render() {
         let isLoaded = this.props.isLoaded
         let allChats = this.props.allChats
@@ -26,7 +18,7 @@ export default class DisplayAllChats extends Component {
                <ListGroup ref={'allChats'}>
                   {allChats.map((item, index) => {
                     return(<ListGroupItem tag="button" action key={index}>{item}</ListGroupItem>)
-                    })
+                    }).bind(this)
                   }
               </ListGroup>
             )
