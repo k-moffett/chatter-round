@@ -117,7 +117,7 @@ export default class HomePage extends Component {
             return(
                <ListGroup ref={'all-chats'}>
                   {allChats.map((item, index) => {
-                    return(<ListGroupItem tag="button" onClick={this.setCurrentChat(item)} action key={index}>{item}</ListGroupItem>)
+                    return(<ListGroupItem tag="button" onClick={(e) => {this.setCurrentChat(item)}} action key={index}>{item}</ListGroupItem>)
                     })
                   }
               </ListGroup>
@@ -125,10 +125,10 @@ export default class HomePage extends Component {
         }   
     }
 
-    setCurrentChat(chatName) {
+    setCurrentChat(item) {
         this.setState({
             inChat: true,
-            currentChat: chatName
+            currentChat: item
         }, console.log(this.state))
     }
 
