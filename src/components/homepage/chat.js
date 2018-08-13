@@ -9,6 +9,8 @@ export default class Chat extends Component {
         super(props)
         this.state = {
             userInput: '',
+            conversation: [],
+            isLoaded: false
         }
         this.sendMessage = this.sendMessage.bind(this)
         this.handleUserInput = this.handleUserInput.bind(this)
@@ -29,6 +31,12 @@ export default class Chat extends Component {
         let { coordinates, currentChat } = this.props.state
         let conversation = []
 
+        const setConversation = (conversation) => {
+            this.setState({
+                conversation: conversation,
+                isLoaded: true
+            })}
+
         firebase.database().ref(`${coordinates}/${currentChat}`).on('value', function(dataSnapshot) {
             conversation = []
 
@@ -40,11 +48,12 @@ export default class Chat extends Component {
                 }
                 conversation.push(message)
               })
-              displayConversation(conversation)
+              setConversation(conversation)
           })
     }
 
-    displayConversation(conversation) {
+    displayConversation() {
+        let { isLoaded, conversation } = this.state
         console.log(conversation)
         let chatDiv = <div id='mainChat' />
         
@@ -56,7 +65,12 @@ export default class Chat extends Component {
                   </div>
                     )
                 })}
-        return chatDiv
+
+        if (isLoaded === false) {
+            return(<div>Loading {this.props.currentChat}...</div>)
+        } else {
+            return chatDiv
+        }
     }
 
     sendMessage(e) {
