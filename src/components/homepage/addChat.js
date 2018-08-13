@@ -31,10 +31,6 @@ export default class AddChat extends Component {
         this.setState({[name]: value});
     };
 
-    cleanup() {
-        this.props.cleanUpchats()
-    }
-
     createChat(e) {
         e.preventDefault();
         this.cleanup()
