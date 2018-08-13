@@ -13,7 +13,6 @@ export default class Chat extends Component {
         this.sendMessage = this.sendMessage.bind(this)
         this.handleUserInput = this.handleUserInput.bind(this)
         this.getConversation = this.getConversation.bind(this)
-        this.displayConversation = this.displayConversation.bind(this)
     }
 
     componentDidMount() {
@@ -41,7 +40,7 @@ export default class Chat extends Component {
                 }
                 conversation.push(message)
               })
-              this.displayConversation(conversation)
+              displayConversation(conversation)
           })
     }
 
