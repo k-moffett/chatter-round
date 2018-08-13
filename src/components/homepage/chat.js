@@ -7,6 +7,10 @@ export default class Chat extends Component {
         super(props)
     }
 
+    componentDidMount() {
+        console.log(this.props.state)
+    }
+
     render() {
         return(
             <div>

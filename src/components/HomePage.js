@@ -126,10 +126,11 @@ export default class HomePage extends Component {
     }
 
     setCurrentChat(item) {
+        console.log('CHAT NAME' ,item)
         this.setState({
             inChat: true,
             currentChat: item
-        }, console.log(this.state))
+        })
     }
 
     exitChat() {
@@ -142,7 +143,7 @@ export default class HomePage extends Component {
     render() {
         if (this.state.inChat === true) {
             return(
-                <Chat currentChat={this.state.currentChat} exitChat={this.exitChat} />
+                <Chat currentChat={this.state.currentChat} exitChat={this.exitChat} state={this.state} />
             )
         } else {
         return(
