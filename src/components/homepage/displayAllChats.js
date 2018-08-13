@@ -18,7 +18,7 @@ export default class DisplayAllChats extends Component {
                <ListGroup ref={'allChats'}>
                   {allChats.map((item, index) => {
                     return(<ListGroupItem tag="button" action key={index}>{item}</ListGroupItem>)
-                    }).bind(this)
+                    })
                   }
               </ListGroup>
             )
