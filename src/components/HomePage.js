@@ -23,6 +23,7 @@ export default class HomePage extends Component {
         this.convertPosition = this.convertPosition.bind(this)
         this.getChats = this.getChats.bind(this)
         this.setCurrentChat = this.setCurrentChat.bind(this)
+        this.exitChat = this.exitChat.bind(this)
     }
 
     componentWillMount() {
@@ -126,14 +127,22 @@ export default class HomePage extends Component {
 
     setCurrentChat(chatName) {
         this.setState({
+            inChat: true,
             currentChat: chatName
         }, console.log(this.state))
+    }
+
+    exitChat() {
+        this.setState({
+            inChat: false,
+            currentChat: ''
+        })
     }
 
     render() {
         if (this.state.inChat === true) {
             return(
-                <Chat currentChat={this.state.currentChat} />
+                <Chat currentChat={this.state.currentChat} exitChat={this.exitChat} />
             )
         } else {
         return(

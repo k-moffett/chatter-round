@@ -10,9 +10,7 @@ export default class Chat extends Component {
     render() {
         return(
             <div>
-            <Link to='/home'>
-                <Button color="primary" >Leave Chat</Button>
-            </Link>
+              <Button onClick={(e) => {this.props.exitChat()}} color="primary" >Leave Chat</Button>
             </div>
         )
     }
