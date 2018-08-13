@@ -6,6 +6,6 @@
   -webkit-text-security: disc;
 }
 
-#all-chats {
-  
+ul {
+  list-style: none;
 }
