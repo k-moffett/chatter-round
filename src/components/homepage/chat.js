@@ -49,20 +49,20 @@ export default class Chat extends Component {
           })
     }
 
-    displayConversation(conversation) {
-        console.log(conversation)
-        let chatDiv = <div id='mainChat' />
+    // displayConversation(conversation) {
+    //     console.log(conversation)
+    //     let chatDiv = <div id='mainChat' />
         
-            {conversation.map((item) => {
-                chatDiv.append(
-                  <div>  
-                    <Col xs='3' id={'username'}>{item.user}</Col> 
-                    <Col xs='9'>{item.message}</Col>
-                  </div>
-                    )
-                })}
-        return chatDiv
-    }
+    //         {conversation.map((item) => {
+    //             chatDiv.append(
+    //               <div>  
+    //                 <Col xs='3' id={'username'}>{item.user}</Col> 
+    //                 <Col xs='9'>{item.message}</Col>
+    //               </div>
+    //                 )
+    //             })}
+    //     return chatDiv
+    // }
 
     sendMessage(e) {
         let { coordinates, currentChat, userInfo } = this.props.state
