@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Button, ListGroup, ListGroupItem } from 'reactstrap';
-import { AddChat, DisplayAllChats } from './homepage/index'
+import { AddChat, Chat } from './homepage/index'
 
 const firebase = require('firebase')
 const crypto = require('crypto');
@@ -13,13 +13,16 @@ export default class HomePage extends Component {
             userInfo: '',
             coordinates: '',
             isLoaded: false,
-            allChats: []
+            allChats: [],
+            inChat: false,
+            currentChat: ''
         }
         this.getSessid = this.getSessid.bind(this)
         this.getUserInfo = this.getUserInfo.bind(this)
         this.getCoords = this.getCoords.bind(this)
         this.convertPosition = this.convertPosition.bind(this)
         this.getChats = this.getChats.bind(this)
+        this.setCurrentChat = this.setCurrentChat.bind(this)
     }
 
     componentWillMount() {
@@ -86,12 +89,9 @@ export default class HomePage extends Component {
     }
 
     getChats(hashCoords) {
-        console.log('GET CHATS')
         let allKeys = []
 
         const setChats = (allKeys) => {
-            console.log('SET CHATS')
-            console.log(allKeys)
             this.setState({
                 allChats: allKeys,
                 isLoaded: true
@@ -99,7 +99,7 @@ export default class HomePage extends Component {
 
         firebase.database().ref(hashCoords).on('value', function(dataSnapshot) {
             allKeys = []
-            
+
             dataSnapshot.forEach((childNode) => {
               let key = childNode.key
               allKeys.push(key)
@@ -116,7 +116,7 @@ export default class HomePage extends Component {
             return(
                <ListGroup ref={'all-chats'}>
                   {allChats.map((item, index) => {
-                    return(<ListGroupItem tag="button" action key={index}>{item}</ListGroupItem>)
+                    return(<ListGroupItem tag="button" onClick={this.setCurrentChat(item)} action key={index}>{item}</ListGroupItem>)
                     })
                   }
               </ListGroup>
@@ -124,7 +124,18 @@ export default class HomePage extends Component {
         }   
     }
 
+    setCurrentChat(chatName) {
+        this.setState({
+            currentChat: chatName
+        }, console.log(this.state))
+    }
+
     render() {
+        if (this.state.inChat === true) {
+            return(
+                <Chat currentChat={this.state.currentChat} />
+            )
+        } else {
         return(
             <Container className={'homePage'}>
             <Row>
@@ -138,7 +149,6 @@ export default class HomePage extends Component {
             <Row>
                 <Col id={'all-chats'}>
                     {this.displayChats()}
-                    {/* <DisplayAllChats isLoaded={this.state.isLoaded} allChats={this.state.allChats} /> */}
                 </Col>
             </Row>
 
@@ -150,6 +160,6 @@ export default class HomePage extends Component {
                 </Col>
             </Row>
             </Container>
-        )
+        )}
     }
 }
