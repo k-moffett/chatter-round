@@ -87,15 +87,18 @@ export default class HomePage extends Component {
     }
 
     getChats(hashCoords) {
+        console.log('GET CHATS')
         let allKeys = []
 
         const clearChats = (allKeys) => {
+            console.log('CLEAR CHATS')
             this.setState({
                 allChats: []
             }, setChats(allKeys))
         }
 
         const setChats = (allKeys) => {
+            console.log('SET CHATS')
             this.setState({
                 allChats: allKeys,
                 isLoaded: true
