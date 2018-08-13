@@ -55,21 +55,21 @@ export default class Chat extends Component {
     displayConversation() {
         let { isLoaded, conversation } = this.state
         console.log(conversation)
-        let chatDiv = <div id='mainChat' />
         
-            {conversation.map((item) => {
-                chatDiv.append(
-                  <div>  
-                    <Col xs='3' id={'username'}>{item.user}</Col> 
-                    <Col xs='9'>{item.message}</Col>
-                  </div>
-                    )
-                })}
-
         if (isLoaded === false) {
             return(<div>Loading {this.props.currentChat}...</div>)
         } else {
-            return chatDiv
+            return(
+                <ul>
+                    {conversation.map((item) => {
+                        return(
+                        <li>  
+                            {item.user}: {item.message}
+                        </li>
+                            )
+                        })}
+                </ul>
+            )
         }
     }
 
