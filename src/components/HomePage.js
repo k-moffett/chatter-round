@@ -89,6 +89,8 @@ export default class HomePage extends Component {
     getChats(hashCoords) {
         let allKeys = []
 
+        this.setState({allChats: []})
+
         const setChats = () => {
             this.setState({
                 allChats: allKeys,
