@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Button, Form, FormGroup, Input, Label } from 'reactstrap';
+const moment = require('moment');
 const firebase = require('firebase')
 
 const config = {
@@ -33,7 +34,7 @@ export default class AddChat extends Component {
     createChat(e) {
         e.preventDefault();
         firebase.database().ref(`${this.props.coordinates}/${this.state.newChatName}`).set({
-            messages: '',
+            _dateCreated: [moment().format('YYYY-MM-DD'), moment().format("HH:mm")],
             });
     }
 
