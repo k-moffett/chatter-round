@@ -17,7 +17,7 @@ export default class Chat extends Component {
     }
 
     componentDidMount() {
-        this.displayConversation()
+        this.getConversation()
     }
 
     handleUserInput (e) {
