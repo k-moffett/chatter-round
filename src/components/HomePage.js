@@ -99,6 +99,7 @@ export default class HomePage extends Component {
 
         const setChats = (allKeys) => {
             console.log('SET CHATS')
+            console.log(allKeys)
             this.setState({
                 allChats: allKeys,
                 isLoaded: true
