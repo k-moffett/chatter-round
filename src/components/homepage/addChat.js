@@ -22,7 +22,6 @@ export default class AddChat extends Component {
         });
         this.handleUserInput = this.handleUserInput.bind(this)
         this.createChat = this.createChat.bind(this)
-        this.cleanup = this.cleanup.bind(this)
     }
 
     handleUserInput (e) {
