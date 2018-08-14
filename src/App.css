@@ -2,10 +2,5 @@
   text-align: center;
 }
 
-[name~="password"] {
-  -webkit-text-security: disc;
-}
 
-ul {
-  list-style: none;
-}
+

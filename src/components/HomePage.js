@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Button, ListGroup, ListGroupItem } from 'reactstrap';
 import { AddChat, Chat } from './homepage/index'
+import './homepage/index.css'
 
 const firebase = require('firebase')
 const crypto = require('crypto');

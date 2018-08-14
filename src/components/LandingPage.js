@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
-import { Login, SignUp } from './landingPage/index'
+import { Landing, Login, SignUp } from './landingPage/index'
 import { Container, Row, Col, Button } from 'reactstrap';
+import './landingPage/index.css';
 
 export default class LandingPage extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            view: 'landing'
+        }
         this.getSessid = this.getSessid.bind(this)
         this.getUserInfo = this.getUserInfo.bind(this)
+        this.handleView = this.handleView.bind(this)
+        this.updateView = this.updateView.bind(this)
     }
 
     componentWillMount() {
@@ -46,16 +52,42 @@ export default class LandingPage extends Component {
             });
     }
 
+    updateView(view) {
+        this.setState({
+            view: view
+        })
+    }
+
+    handleView() {
+        let view = this.state.view
+        let component
+        switch(view) {
+            case 'signup':
+            component = <SignUp updateView={this.updateView} history={this.props.history} />
+               break;
+            case 'login':
+            component = <Login updateView={this.updateView} history={this.props.history} />
+              break;
+            case 'landing':
+            component = <Landing updateView={this.updateView} />
+              break;
+            default:
+            component = <Landing updateView={this.updateView} />
+        }
+        return component
+    }
+
     render() {
         return(
-            <Container>
+            <Container id={'landing-page'} >
               <Row>
                 <Col>
                 <h1>Chatter Round</h1>
                 </Col>
               </Row>
-              <SignUp history={this.props.history} />
-              <Login history={this.props.history} />
+              {this.handleView()}
+              {/* <SignUp history={this.props.history} />
+              <Login history={this.props.history} /> */}
             </Container>
         )
     }

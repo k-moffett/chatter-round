@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Row, Col, Button, Form, FormGroup, Input, Label } from 'reactstrap';
+import './index.css';
 const hash = require('hash.js');
 
 export default class Login extends Component {
@@ -115,6 +116,7 @@ export default class Login extends Component {
                     <Label for="password">Password</Label>
                     <Input type="text" name="password" value={this.state.password} onChange={this.handleUserInput} placeholder="enter your password" />
                   </FormGroup>
+                  <Button onClick={(e) => {this.props.updateView('landing')}}>Back</Button>
                   <Button disabled={!this.state.formValid} onClick={(e) => {this.handleLogin(e)}}>Log In</Button>
                 </Form>
               </Col>
