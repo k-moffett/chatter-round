@@ -10,6 +10,15 @@ export default class Landing extends Component {
     render() {
         return(
         <Container id={'main-landing'} >
+
+            <Row>
+                <Col>
+                <div  id={'welcome'}>
+                    <p>Welcome to Chatter Round!</p>
+                    <p> A location based chat application used to annonomously connect users near each other's current location. Click one of the links below to get started.</p>
+                </div>
+                </Col>
+            </Row>
             <Row>
                 <Col>
                 <Button className={'main-landing-btn'} onClick={(e) => {this.props.updateView('signup')}}>Sign Up</Button>

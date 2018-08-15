@@ -151,39 +151,35 @@ export default class SignUp extends Component {
 
     render() {
         return(
-            <Row>
-              <Col id={'signup-form'}>
-              <h1>Sign Up!</h1>
-                <Form >
+            <Row id={'signup-row'} >
+              <Col>
+              <div id={'signup-form'}>
+                <Form id={'signup-formgroup'} >
                   <FormGroup>
-                    <Label for="userName">Username</Label>
-                    <Input type="text" name="userName" value={this.state.userName} onChange={this.handleUserInput} placeholder="enter a username" />
+                    <Input className={'signupForms'} type="text" name="userName" value={this.state.userName} onChange={this.handleUserInput} placeholder="enter a username" />
                   </FormGroup>
                   <sup id={'username-validation'} >*Usernames must have a length of at least 4 characters.</sup>
                   <FormGroup>
-                    <Label for="email">Email</Label>
-                    <Input type="email" name="email" value={this.state.email} onChange={this.handleUserInput} placeholder="enter your email" />
+                    <Input className={'signupForms'} type="email" name="email" value={this.state.email} onChange={this.handleUserInput} placeholder="enter your email" />
                   </FormGroup>
                   <sup id={'email-validation'}>You must enter a valid email.</sup>
                   <FormGroup>
-                    <Label for="dateOfBirth">Date of Birth</Label>
-                    <Input type="date" name="dateOfBirth" value={this.state.dateOfBirth} onChange={this.handleUserInput} placeholder="enter date of birth" />
+                    <Input className={'signupForms'} type="date" name="dateOfBirth" value={this.state.dateOfBirth} onChange={this.handleUserInput} placeholder="enter date of birth" />
                   </FormGroup>
                   <sup id={'dob-validation'} >*You must be at least 13 years of age.</sup>
                   <FormGroup>
-                    <Label for="password">Password</Label>
-                    <Input type="text" name="password" value={this.state.password} onChange={this.handleUserInput} placeholder="enter a password" />
+                    <Input className={'signupForms'} type="text" name="password" autocomplete="off" value={this.state.password} onChange={this.handleUserInput} placeholder="enter a password" />
                   </FormGroup>
                   <sup id={'password-validation'} >*Your password must be between 6 and 16 characters long and include one of each of the following: lowercase character, uppercase character, special character, and number.</sup>
                   <FormGroup>
-                    <Label for="passwordMatch">Verify Password</Label>
-                    <Input type="password" name="passwordMatch" value={this.state.passwordMatch} onChange={this.handleUserInput} placeholder="verify your password" />
+                    <Input className={'signupForms'} type="password" name="passwordMatch" autocomplete="off" value={this.state.passwordMatch} onChange={this.handleUserInput} placeholder="verify your password" />
                   </FormGroup>
                   <sup id={'password-match'} >*Your passwords must match.</sup>
                   <br />
-                  <Button onClick={(e) => {this.props.updateView('landing')}}>Back</Button>
-                  <Button disabled={!this.state.formValid} onClick={(e) => {this.handleSignUp(e)}}>Sign Up</Button>
+                  <Button className={'signup-btn'} onClick={(e) => {this.props.updateView('landing')}}>Back</Button>
+                  <Button className={'signup-btn'} disabled={!this.state.formValid} onClick={(e) => {this.handleSignUp(e)}}>Sign Up</Button>
                 </Form>
+                </div>
               </Col>
             </Row>
         );
