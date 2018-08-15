@@ -12,12 +12,12 @@ export default class Landing extends Component {
         <Container id={'main-landing'} >
             <Row>
                 <Col>
-                <Button onClick={(e) => {this.props.updateView('signup')}}>Sign Up</Button>
+                <Button className={'main-landing-btn'} onClick={(e) => {this.props.updateView('signup')}}>Sign Up</Button>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                <Button onClick={(e) => {this.props.updateView('login')}}>Log In</Button>
+                <Button className={'main-landing-btn'} onClick={(e) => {this.props.updateView('login')}}>Log In</Button>
                 </Col>
             </Row>
         </Container>

@@ -82,7 +82,9 @@ export default class LandingPage extends Component {
             <Container id={'landing-page'} >
               <Row>
                 <Col>
-                <h1>Chatter Round</h1>
+                  <div id={'title'} >
+                    <h1 id={'Chatter-Round'} >Chatter Round</h1>
+                  </div>
                 </Col>
               </Row>
               {this.handleView()}
