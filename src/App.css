@@ -1,13 +1,15 @@
 body, html, #root{
   height: 100%;
   width: 100%;
-  margin: 0;
 }
 
 .App {
   height: 100%;
   width: 100%;
   text-align: center;
+  background: url('./images/landingpage-background.jpeg') no-repeat fixed center;
+  background-size: auto;
+
 }
 
 
