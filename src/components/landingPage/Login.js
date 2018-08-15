@@ -104,21 +104,20 @@ export default class Login extends Component {
 
     render() {
         return(
-            <Row>
+            <Row id={'login-row'} >
               <Col>
-              <h1>Log In!</h1>
-                <Form>
+              <div id={'login-form'}>
+                <Form id={'login-formgroup'} >
                   <FormGroup>
-                    <Label for="email">Email</Label>
-                    <Input type="email" name="email" value={this.state.email} onChange={this.handleUserInput} placeholder="enter your email" />
+                    <Input className={'loginForms'} type="email" name="email" value={this.state.email} onChange={this.handleUserInput} placeholder="enter your email" />
                   </FormGroup>
                   <FormGroup>
-                    <Label for="password">Password</Label>
-                    <Input type="text" name="password" value={this.state.password} onChange={this.handleUserInput} placeholder="enter your password" />
+                    <Input className={'loginForms'} type="text" name="password" value={this.state.password} onChange={this.handleUserInput} placeholder="enter your password" />
                   </FormGroup>
-                  <Button onClick={(e) => {this.props.updateView('landing')}}>Back</Button>
-                  <Button disabled={!this.state.formValid} onClick={(e) => {this.handleLogin(e)}}>Log In</Button>
+                  <Button className={'login-btn'} onClick={(e) => {this.props.updateView('landing')}}>Back</Button>
+                  <Button className={'login-btn'} disabled={!this.state.formValid} onClick={(e) => {this.handleLogin(e)}}>Log In</Button>
                 </Form>
+                </div>
               </Col>
             </Row>
         )
