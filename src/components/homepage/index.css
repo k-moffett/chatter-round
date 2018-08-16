@@ -21,7 +21,29 @@ ul {
 
 #menu-btn {
   position: relative;
-  top:25%;
+  top:20%;
   left: 55%;
   background: rgb(0, 180, 0);
+}
+
+#chat-form {
+  position: relative;
+  bottom: 0;
+}
+
+#send-btn {
+  position: relative;
+  background: rgb(0, 180, 0);
+  bottom: 0;
+
+}
+
+#exit-chat {
+  position: relative;
+  background: rgb(0, 180, 0);
+
+}
+
+#userChatDisplay {
+  position: relative;
 }

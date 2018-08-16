@@ -62,7 +62,9 @@ export default class Chat extends Component {
             return(
                 <ul>
                     {conversation.map((item, index) => {
-                        if (index !== 0) {
+                        if (item.user === undefined) {
+                            console.log('undefined user')
+                        } else {
                             return(
                             <li>  
                                 {item.user}: {item.message}
@@ -91,7 +93,11 @@ export default class Chat extends Component {
         return(
             <Container>
 
-                <Row className={'userChatDisplay'}>
+                <Row>
+                  <Button id={'exit-chat'} onClick={(e) => {this.props.exitChat()}} color="primary" >Leave Chat</Button>
+                </Row>
+
+                <Row id={'userChatDisplay'}>
                     {this.displayConversation()}
                 </Row>
 
@@ -100,20 +106,18 @@ export default class Chat extends Component {
                     <Col xs='10'>
                         <Form>
                             <FormGroup>
-                                <Input type="text" name="userInput" value={this.state.userInput} onChange={this.handleUserInput} placeholder="say something..." />
+                                <Input id={'chat-form'} type="text" name="userInput" value={this.state.userInput} onChange={this.handleUserInput} placeholder="say something..." />
                             </FormGroup>
                         </Form>
                     </Col>
 
                     <Col xs='2'>
-                        <Button onClick={(e) => {this.sendMessage(e)}}>Send</Button>
+                        <Button id={'send-btn'} onClick={(e) => {this.sendMessage(e)}}>Send</Button>
                     </Col>
 
                 </Row>
 
-                <Row>
-                  <Button onClick={(e) => {this.props.exitChat()}} color="primary" >Leave Chat</Button>
-                </Row>
+
             </Container>
         )
     }
