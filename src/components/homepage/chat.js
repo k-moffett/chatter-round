@@ -60,7 +60,7 @@ export default class Chat extends Component {
             return(<div>Loading {this.props.currentChat}...</div>)
         } else {
             return(
-                <ul>
+                <ul id={'converstaion'} >
                     {conversation.map((item, index) => {
                         if (item.user === undefined) {
                             console.log('undefined user')
@@ -101,7 +101,7 @@ export default class Chat extends Component {
                     {this.displayConversation()}
                 </Row>
 
-                <Row className={'userInput'}>
+                <Row id={'userInput'}>
 
                     <Col xs='10'>
                         <Form>
