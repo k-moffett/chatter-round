@@ -9,7 +9,6 @@ ul {
 
 .homepageHeader {
   height: 10%;
-  width: 100%;
   position: relative;
   background: linear-gradient(to right, grey, rgb(212, 226, 208));
   border-bottom: 1px solid black;
