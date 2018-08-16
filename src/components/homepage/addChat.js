@@ -34,7 +34,6 @@ export default class AddChat extends Component {
     createChat(e) {
         e.preventDefault();
         firebase.database().ref(`${this.props.coordinates}/${this.state.newChatName}`).set({
-            message: `Welcome to ${this.state.newChatName}!`,
             _dateCreated: [moment().format('YYYY-MM-DD'), moment().format("HH:mm")],
             });
     }
