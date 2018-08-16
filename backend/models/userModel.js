@@ -136,6 +136,19 @@ const userModel = {
 
         })
 
+    },
+
+    logout(sessid) {
+
+        return new Promise((resolve, reject) => {
+
+            connection.query(`UPDATE users SET sessid='' WHERE sessid=${connection.escape(sessid)};`, function (error, results, fields) {
+                if (error) throw error && reject(error);
+                resolve({'response': 'logout successful'})
+            });
+
+        })
+
     }
 
 };

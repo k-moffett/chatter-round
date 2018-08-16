@@ -21,6 +21,7 @@ ul {
 
 #menu-btn {
   position: relative;
+  top:10%;
   left: 65%;
   background: rgb(0, 180, 0);
 }

@@ -16,6 +16,10 @@ const userController = {
 
     getUser(sessid) {
         return userModel.getUser(sessid)
+    },
+
+    logout(sessid) {
+        return userModel.logout(sessid)
     }
 
 };

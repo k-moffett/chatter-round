@@ -152,7 +152,26 @@ export default class HomePage extends Component {
 
     logout(e) {
         e.preventDefault()
-        document.cookie = 'sessid=; path=/; domain=.chatterround.com; expires=' + new Date(0).toUTCString();
+        let sessid = document.cookie.split('=')
+        fetch('/logout', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                sessid: sessid[1]
+            })
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson)
+                this.props.history.push('/')
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
     }
 
     render() {
@@ -174,9 +193,7 @@ export default class HomePage extends Component {
                     Menu
                     </DropdownToggle>
                     <DropdownMenu>
-                      <Link to='/'>
                         <DropdownItem onClick={(e) => {this.logout(e)}} >Logout</DropdownItem>
-                      </Link>
                     </DropdownMenu>
                 </ButtonDropdown>
                 </Col>

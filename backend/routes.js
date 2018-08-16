@@ -55,5 +55,13 @@ module.exports = (app) => {
             res.send(response)
         })
     })
+
+    app.post('/logout', (req, res) => {
+        let sessid = req.body.sessid
+        userController.logout(sessid)
+        .then((response) => {
+            res.send(response)
+        })
+    })
       
 };
