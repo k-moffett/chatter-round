@@ -103,15 +103,13 @@ export default class Chat extends Component {
 
                 <Row id={'userInput'}>
 
-                    <Col xs='10'>
+                    <Col>
                         <Form>
                             <FormGroup>
                                 <Input id={'chat-form'} type="text" name="userInput" value={this.state.userInput} onChange={this.handleUserInput} placeholder="say something..." />
                             </FormGroup>
                         </Form>
-                    </Col>
-
-                    <Col xs='2'>
+        
                         <Button id={'send-btn'} onClick={(e) => {this.sendMessage(e)}}>Send</Button>
                     </Col>
 
