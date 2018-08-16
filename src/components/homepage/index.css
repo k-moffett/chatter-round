@@ -1,3 +1,13 @@
 ul {
     list-style: none;
   }
+
+.homepageHeader {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background: linear-gradient(to right, grey, rgb(212, 226, 208));
+  border-bottom: 1px solid black;
+  box-shadow: 0px 0px 5px 5px rgb(0, 61, 23), inset 0px 0px 3px 3px rgb(27, 27, 27);
+
+}

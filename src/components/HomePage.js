@@ -142,6 +142,7 @@ export default class HomePage extends Component {
     }
 
     render() {
+        
         if (this.state.inChat === true) {
             return(
                 <Chat currentChat={this.state.currentChat} exitChat={this.exitChat} state={this.state} />
@@ -149,7 +150,7 @@ export default class HomePage extends Component {
         } else {
         return(
             <Container className={'homePage'}>
-            <Row>
+            <Row className={'homepageHeader'} >
                 <Col>
                 <h1>Welcome {this.state.userInfo.userName}</h1>
                 </Col>
