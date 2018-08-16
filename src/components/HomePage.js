@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import { Container, Row, Col, Button, ListGroup, ListGroupItem } from 'reactstrap';
+import { Container, Row, Col, Button, ListGroup, ListGroupItem, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { AddChat, Chat } from './homepage/index'
 import './homepage/index.css'
 
@@ -16,7 +16,8 @@ export default class HomePage extends Component {
             isLoaded: false,
             allChats: [],
             inChat: false,
-            currentChat: ''
+            currentChat: '',
+            dropdownOpen: false
         }
         this.getSessid = this.getSessid.bind(this)
         this.getUserInfo = this.getUserInfo.bind(this)
@@ -25,6 +26,7 @@ export default class HomePage extends Component {
         this.getChats = this.getChats.bind(this)
         this.setCurrentChat = this.setCurrentChat.bind(this)
         this.exitChat = this.exitChat.bind(this)
+        this.toggle = this.toggle.bind(this);
     }
 
     componentWillMount() {
@@ -141,6 +143,16 @@ export default class HomePage extends Component {
         })
     }
 
+    toggle() {
+        this.setState({
+          dropdownOpen: !this.state.dropdownOpen
+        });
+    }
+
+    logout() {
+        document.cookie = 'sessid=; path=/; domain=.chatterround.com; expires=' + new Date(0).toUTCString();
+    }
+
     render() {
         
         if (this.state.inChat === true) {
@@ -154,12 +166,25 @@ export default class HomePage extends Component {
                 <Col>
                 <h1>Welcome {this.state.userInfo.userName}</h1>
                 </Col>
+                <Col>
+                <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                    <DropdownToggle caret>
+                    Menu
+                    </DropdownToggle>
+                    <DropdownMenu>
+                      <Link to='/'>
+                        <DropdownItem onClick={(e) => {this.logout()}} >Logout</DropdownItem>
+                      </Link>
+                    </DropdownMenu>
+                </ButtonDropdown>
+                </Col>
             </Row>
 
             <AddChat coordinates={this.state.coordinates} />
 
             <Row>
                 <Col id={'all-chats'}>
+                    <p>Chats within about 1 mile of you:</p>
                     {this.displayChats()}
                 </Col>
             </Row>
