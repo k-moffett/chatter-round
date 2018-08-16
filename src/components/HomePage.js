@@ -185,7 +185,7 @@ export default class HomePage extends Component {
             <Container className={'homePage'}>
             <Row className={'homepageHeader'} >
                 <Col>
-                <h1>Welcome {this.state.userInfo.userName}</h1>
+                <p>Welcome {this.state.userInfo.userName}</p>
                 </Col>
                 <Col>
                 <ButtonDropdown id={'menu-btn'} isOpen={this.state.dropdownOpen} toggle={this.toggle}>
