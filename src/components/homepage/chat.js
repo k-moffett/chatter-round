@@ -91,7 +91,7 @@ export default class Chat extends Component {
 
     render() {
         return(
-            <Container>
+            <Container id={'main-chat-container'}>
 
                 <Row>
                   <Button id={'exit-chat'} onClick={(e) => {this.props.exitChat()}} color="primary" >Leave Chat</Button>

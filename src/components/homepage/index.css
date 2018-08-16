@@ -26,6 +26,11 @@ ul {
   background: rgb(0, 180, 0);
 }
 
+#main-chat-container {
+  height: 100%;
+  width: 100%;
+}
+
 #userInput {
   padding: 0 0 0 0;
   margin: 0 0 0 0;
@@ -34,12 +39,14 @@ ul {
 #chat-form {
   position: relative;
   bottom: 0;
+  width: 80%;
 }
 
 #send-btn {
   position: relative;
   background: rgb(0, 180, 0);
   bottom: 0;
+  width: 20%;
 
 }
 
