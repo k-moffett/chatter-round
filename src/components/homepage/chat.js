@@ -108,9 +108,9 @@ export default class Chat extends Component {
                             <FormGroup>
                                 <Input id={'chat-form'} type="text" name="userInput" value={this.state.userInput} onChange={this.handleUserInput} placeholder="say something..." />
                             </FormGroup>
+                                <Button id={'send-btn'} onClick={(e) => {this.sendMessage(e)}}>Send</Button>
                         </Form>
         
-                        <Button id={'send-btn'} onClick={(e) => {this.sendMessage(e)}}>Send</Button>
                     </Col>
 
                 </Row>
