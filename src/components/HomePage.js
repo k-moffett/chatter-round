@@ -27,6 +27,7 @@ export default class HomePage extends Component {
         this.setCurrentChat = this.setCurrentChat.bind(this)
         this.exitChat = this.exitChat.bind(this)
         this.toggle = this.toggle.bind(this);
+        this.logout = this.logout.bind(this)
     }
 
     componentWillMount() {
@@ -149,7 +150,8 @@ export default class HomePage extends Component {
         });
     }
 
-    logout() {
+    logout(e) {
+        e.preventDefault()
         document.cookie = 'sessid=; path=/; domain=.chatterround.com; expires=' + new Date(0).toUTCString();
     }
 
@@ -167,13 +169,13 @@ export default class HomePage extends Component {
                 <h1>Welcome {this.state.userInfo.userName}</h1>
                 </Col>
                 <Col>
-                <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                <ButtonDropdown id={'menu-btn'} isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                     <DropdownToggle caret>
                     Menu
                     </DropdownToggle>
                     <DropdownMenu>
                       <Link to='/'>
-                        <DropdownItem onClick={(e) => {this.logout()}} >Logout</DropdownItem>
+                        <DropdownItem onClick={(e) => {this.logout(e)}} >Logout</DropdownItem>
                       </Link>
                     </DropdownMenu>
                 </ButtonDropdown>
@@ -186,14 +188,6 @@ export default class HomePage extends Component {
                 <Col id={'all-chats'}>
                     <p>Chats within about 1 mile of you:</p>
                     {this.displayChats()}
-                </Col>
-            </Row>
-
-            <Row>
-                <Col>
-                <Link to='/'>
-                    <Button color="primary" >To Landing</Button>
-                </Link>
                 </Col>
             </Row>
             </Container>
