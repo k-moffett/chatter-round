@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import ReactDOM from 'react-dom';
 import { Container, Row, Col, Button, Form, FormGroup, Input, Label } from 'reactstrap';
 const moment = require('moment');
 const firebase = require('firebase')
@@ -90,7 +90,8 @@ export default class Chat extends Component {
       }
     
       scrollToBottom() {
-        this.refs.conversationRef.scrollIntoView({ behavior: 'smooth' });
+        let node = ReactDOM.findDOMNode(this.refs.conversationRef)
+        node.scrollIntoView({ behavior: 'smooth' });
       }
 
     sendMessage(e) {
