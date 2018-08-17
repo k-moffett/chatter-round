@@ -50,6 +50,7 @@ export default class Chat extends Component {
               setConversation(conversation)
           })
     }
+    
 
     displayConversation() {
         let { isLoaded, conversation } = this.state
