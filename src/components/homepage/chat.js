@@ -80,9 +80,9 @@ export default class Chat extends Component {
         }
     }
 
-    componentDidMount() {
-        this.scrollToBottom();
-      }
+    // componentDidMount() {
+    //     this.scrollToBottom();
+    //   }
     
       componentDidUpdate() {
         this.scrollToBottom();
