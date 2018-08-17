@@ -202,7 +202,7 @@ export default class HomePage extends Component {
             <AddChat coordinates={this.state.coordinates} />
 
             <Row>
-                <Col id={'all-chats'}>
+                <Col>
                     <p>Chats within about 1 mile of you:</p>
                     {this.displayChats()}
                 </Col>
