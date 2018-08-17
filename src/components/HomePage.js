@@ -119,12 +119,14 @@ export default class HomePage extends Component {
             return(<div>Finding chatter...</div>)
         } else {
             return(
-               <ListGroup id={'all-chats'}>
+               <div  id={'all-chats'}>
+               <ListGroup>
                   {allChats.map((item, index) => {
                     return(<ListGroupItem tag="button" onClick={(e) => {this.setCurrentChat(item)}} action key={index}>{item}</ListGroupItem>)
                     })
                   }
               </ListGroup>
+              </div>
             )
         }   
     }
