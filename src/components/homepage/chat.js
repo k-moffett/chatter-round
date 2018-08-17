@@ -92,7 +92,8 @@ export default class Chat extends Component {
       }
     
       scrollToBottom() {
-        this.conversationRef.currnet.scrollIntoView({ behavior: 'smooth' });
+        let conversationDiv = this.conversationRef
+        this.conversationRef.current.scrollIntoView({ behavior: 'smooth' });
       }
 
     sendMessage(e) {
