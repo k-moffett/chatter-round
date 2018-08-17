@@ -59,7 +59,7 @@ export default class Chat extends Component {
             return(<div>Loading {this.props.currentChat}...</div>)
         } else {
             return(
-                <ul id={'converstaion'} >
+                <ul id={'converstaion'} ref={el => { this.el = el; }} >
                     {conversation.map((item, index) => {
                         if (item.user === undefined) {
                         } else if (item.user === this.props.userName) {
@@ -80,6 +80,18 @@ export default class Chat extends Component {
             )
         }
     }
+
+    componentDidMount() {
+        this.scrollToBottom();
+      }
+    
+      componentDidUpdate() {
+        this.scrollToBottom();
+      }
+    
+      scrollToBottom() {
+        this.el.scrollIntoView({ behavior: 'smooth' });
+      }
 
     sendMessage(e) {
         let { coordinates, currentChat, userInfo } = this.props.state
@@ -102,7 +114,7 @@ export default class Chat extends Component {
                 </Row>
 
                 <Row>
-                    <p>{this.props.state.currentChat}</p>
+                    <p id={'chat-title'} >{this.props.state.currentChat}</p>
                 </Row>
 
                 <Row id={'userChatDisplay'}>
