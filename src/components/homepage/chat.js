@@ -67,17 +67,13 @@ export default class Chat extends Component {
                         } else if (item.user === this.props.state.userName) {
                             return(
                                 <li id={'this-users-chat-message'} >  
-                                    <div id={'this-chat-message'} >{item.message}</div>
-                                    <div id={'this-chat-colon'} >:</div> 
-                                    <div id={'this-chat-username'} >{item.user}</div>  
+                                    {item.message}:{item.user}
                                 </li>
                             )
                         } else {
                             return(
                             <li id={'other-users-chat-message'} >  
-                                <div id={'other-chat-username'} >{item.user}</div>
-                                <div id={'other-chat-colon'} >:</div> 
-                                <div id={'other-chat-message'} >{item.message}</div>
+                                {item.user}:{item.message}
                             </li>
                             )}
                         })
