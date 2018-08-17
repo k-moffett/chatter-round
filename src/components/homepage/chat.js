@@ -101,6 +101,10 @@ export default class Chat extends Component {
                   <Button id={'exit-chat'} onClick={(e) => {this.props.exitChat()}} color="primary" >Leave Chat</Button>
                 </Row>
 
+                <Row>
+                    <p>{this.props.state.currentChat}</p>
+                </Row>
+
                 <Row id={'userChatDisplay'}>
                     {this.displayConversation()}
                 </Row>
