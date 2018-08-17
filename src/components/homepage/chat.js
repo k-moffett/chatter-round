@@ -55,6 +55,7 @@ export default class Chat extends Component {
     displayConversation() {
         let { isLoaded, conversation, userInfo } = this.state
         console.log(conversation)
+        console.log(this.props.userName)
         
         if (isLoaded === false) {
             return(<div>Loading {this.props.currentChat}...</div>)
@@ -67,13 +68,13 @@ export default class Chat extends Component {
                         } else if (item.user === this.props.state.userName) {
                             return(
                                 <li id={'this-users-chat-message'} >  
-                                    {item.message}:{item.user}
+                                    {item.message} :{item.user}
                                 </li>
                             )
                         } else {
                             return(
                             <li id={'other-users-chat-message'} >  
-                                {item.user}:{item.message}
+                                {item.user}: {item.message}
                             </li>
                             )}
                         })
