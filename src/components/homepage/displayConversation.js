@@ -8,10 +8,10 @@ export default class DisplayConversation extends Component {
         super(props)
 
         this.scrollDown = this.scrollDown.bind(this)
-        this.conversationRef = React.createRef()
     }
 
     componentDidMount() {
+        console.log(this.refs)
         this.scrollDown()
     }
 
@@ -28,7 +28,7 @@ export default class DisplayConversation extends Component {
                 return(<div>Loading {this.props.currentChat}...</div>)
             } else {
                 return(
-                    <ul id={'converstaion'} ref={this.conversationRef} >
+                    <ul id={'converstaion'} ref='conversationRef' >
                         {this.props.conversation.map((item, index) => {
                             if (item.user === undefined) {
                             } else if (item.user === this.props.userName) {
