@@ -15,6 +15,8 @@ export default class Chat extends Component {
         this.sendMessage = this.sendMessage.bind(this)
         this.handleUserInput = this.handleUserInput.bind(this)
         this.getConversation = this.getConversation.bind(this)
+
+        this.conversationRef = React.createRef()
     }
 
     componentDidMount() {
@@ -53,13 +55,13 @@ export default class Chat extends Component {
     }
 
     displayConversation() {
-        let { isLoaded, conversation, userInfo } = this.state
+        let { isLoaded, conversation } = this.state
         
         if (isLoaded === false) {
             return(<div>Loading {this.props.currentChat}...</div>)
         } else {
             return(
-                <ul id={'converstaion'} ref={el => { this.el = el; }} >
+                <ul id={'converstaion'} ref={this.conversationRef} >
                     {conversation.map((item, index) => {
                         if (item.user === undefined) {
                         } else if (item.user === this.props.userName) {
@@ -90,7 +92,7 @@ export default class Chat extends Component {
       }
     
       scrollToBottom() {
-        this.el.scrollIntoView({ behavior: 'smooth' });
+        this.conversationRef.scrollIntoView({ behavior: 'smooth' });
       }
 
     sendMessage(e) {
