@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { Container, Row, Col, Button, Form, FormGroup, Input, Label } from 'reactstrap';
 const moment = require('moment');
 const firebase = require('firebase')
@@ -59,7 +58,7 @@ export default class Chat extends Component {
             return(<div>Loading {this.props.currentChat}...</div>)
         } else {
             return(
-                <ul id={'converstaion'} ref={'conversationRef'} >
+                <ul id={'converstaion'} >
                     {conversation.map((item, index) => {
                         if (item.user === undefined) {
                         } else if (item.user === this.props.userName) {
@@ -90,8 +89,7 @@ export default class Chat extends Component {
       }
     
       scrollToBottom() {
-        let node = ReactDOM.findDOMNode(this.refs.conversationRef)
-        node.scrollIntoView({ behavior: 'smooth' });
+        this.refs.conversationRef.scrollIntoView({ behavior: 'smooth' });
       }
 
     sendMessage(e) {
@@ -118,7 +116,7 @@ export default class Chat extends Component {
                     <p id={'chat-title'} >{this.props.state.currentChat}</p>
                 </Row>
 
-                <Row id={'userChatDisplay'}>
+                <Row id={'userChatDisplay'} ref={'conversationRef'}>
                     {this.displayConversation()}
                 </Row>
 
