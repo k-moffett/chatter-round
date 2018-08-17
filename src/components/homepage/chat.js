@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button, Form, FormGroup, Input, Label } from 'reactstrap';
+import DisplayConverstion from './displayConversation'
 const moment = require('moment');
 const firebase = require('firebase')
 
@@ -80,17 +81,6 @@ export default class Chat extends Component {
         }
     }
 
-    // componentDidMount() {
-    //     this.scrollToBottom();
-    //   }
-    
-      componentDidUpdate() {
-        this.scrollToBottom();
-      }
-    
-      scrollToBottom() {
-        this.refs.conversationRef.scrollIntoView({ behavior: 'smooth' });
-      }
 
     sendMessage(e) {
         let { coordinates, currentChat, userInfo } = this.props.state
@@ -116,8 +106,9 @@ export default class Chat extends Component {
                     <p id={'chat-title'} >{this.props.state.currentChat}</p>
                 </Row>
 
-                <Row id={'userChatDisplay'} ref={'conversationRef'}>
-                    {this.displayConversation()}
+                <Row id={'userChatDisplay'} >
+                    {/* {this.displayConversation()} */}
+                    <DisplayConverstion isLoaded={this.state.isLoaded} conversation={this.state.conversation} />
                 </Row>
 
                 <Row id={'userInput'}>
