@@ -54,8 +54,6 @@ export default class Chat extends Component {
 
     displayConversation() {
         let { isLoaded, conversation, userInfo } = this.state
-        console.log(conversation)
-        console.log(this.props.userName)
         
         if (isLoaded === false) {
             return(<div>Loading {this.props.currentChat}...</div>)
@@ -64,8 +62,7 @@ export default class Chat extends Component {
                 <ul id={'converstaion'} >
                     {conversation.map((item, index) => {
                         if (item.user === undefined) {
-                            console.log('undefined user')
-                        } else if (item.user === this.props.state.userName) {
+                        } else if (item.user === this.props.userName) {
                             return(
                                 <li id={'this-users-chat-message'} >  
                                     {item.message} :{item.user}
