@@ -178,7 +178,7 @@ export default class HomePage extends Component {
         
         if (this.state.inChat === true) {
             return(
-                <Chat currentChat={this.state.currentChat} exitChat={this.exitChat} state={this.state} />
+                <Chat currentChat={this.state.currentChat} exitChat={this.exitChat} userName={this.state.userInfo.userName} state={this.state} />
             )
         } else {
         return(

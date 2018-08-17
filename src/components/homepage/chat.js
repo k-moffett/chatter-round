@@ -53,7 +53,7 @@ export default class Chat extends Component {
     }
 
     displayConversation() {
-        let { isLoaded, conversation } = this.state
+        let { isLoaded, conversation, userInfo } = this.state
         console.log(conversation)
         
         if (isLoaded === false) {
@@ -64,10 +64,20 @@ export default class Chat extends Component {
                     {conversation.map((item, index) => {
                         if (item.user === undefined) {
                             console.log('undefined user')
+                        } else if (item.user === this.props.state.userName) {
+                            return(
+                                <li id={'this-users-chat-message'} >  
+                                    <div id={'this-chat-message'} >{item.message}</div>
+                                    <div id={'this-chat-colon'} >:</div> 
+                                    <div id={'this-chat-username'} >{item.user}</div>  
+                                </li>
+                            )
                         } else {
                             return(
-                            <li>  
-                                {item.user}: {item.message}
+                            <li id={'other-users-chat-message'} >  
+                                <div id={'other-chat-username'} >{item.user}</div>
+                                <div id={'other-chat-colon'} >:</div> 
+                                <div id={'other-chat-message'} >{item.message}</div>
                             </li>
                             )}
                         })
