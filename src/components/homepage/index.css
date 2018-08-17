@@ -68,33 +68,13 @@ ul {
 }
 
 #this-users-chat-message {
+  position: relative;
+  right: 0;
   text-align: right;
 }
 
-#this-chat-message {
-   
-}
-
-#this-chat-colon {
-
-}
-
-#this-chat-username {
-
-}
-
 #other-users-chat-message {
+  position: relative;
+  left: 0;
   text-align: left;
-}
-
-#other-chat-username {
-
-}
-
-#other-chat-colon {
-
-}
-
-#other-chat-message {
-
 }
