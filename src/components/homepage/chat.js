@@ -15,6 +15,8 @@ export default class Chat extends Component {
         this.sendMessage = this.sendMessage.bind(this)
         this.handleUserInput = this.handleUserInput.bind(this)
         this.getConversation = this.getConversation.bind(this)
+
+        this.conversationRef = React.createRef()
     }
 
     componentDidMount() {
@@ -90,7 +92,8 @@ export default class Chat extends Component {
       }
     
       scrollToBottom() {
-        React.DOM['#conversation'].scrollIntoView({ behavior: 'smooth' });
+        let converstaionDiv = this.conversationRef.current
+        converstaionDiv.scrollIntoView({ behavior: 'smooth' });
       }
 
     sendMessage(e) {
