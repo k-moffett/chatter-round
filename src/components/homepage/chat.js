@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button, Form, FormGroup, Input, Label } from 'reactstrap';
-import DisplayConverstion from './displayConversation'
 const moment = require('moment');
 const firebase = require('firebase')
 
@@ -107,8 +106,7 @@ export default class Chat extends Component {
                 </Row>
 
                 <Row id={'userChatDisplay'} >
-                    {/* {this.displayConversation()} */}
-                    <DisplayConverstion isLoaded={this.state.isLoaded} conversation={this.state.conversation} />
+                    {this.displayConversation()}
                 </Row>
 
                 <Row id={'userInput'}>
