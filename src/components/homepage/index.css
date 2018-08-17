@@ -26,6 +26,11 @@ ul {
   background: rgb(0, 180, 0);
 }
 
+#all-chats {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
 #main-chat-container {
   height: 100%;
   width: 100%;
