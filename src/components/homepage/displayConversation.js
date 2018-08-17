@@ -11,7 +11,8 @@ export default class DisplayConversation extends Component {
     }
 
     componentDidMount() {
-        console.log(this.refs)
+        setTimeout(console.log(this.refs), 3000)
+        
         this.scrollDown()
     }
 
